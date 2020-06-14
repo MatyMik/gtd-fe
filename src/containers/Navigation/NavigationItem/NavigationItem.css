@@ -1,0 +1,22 @@
+.NavItemContainer{
+    display: inline-grid;
+    grid-template-rows: 1fr;
+    height:100%;
+}
+
+
+.NavItem{
+    text-decoration: none;
+    text-align:left;
+    color: white;
+    display: flex;
+    font-weight: 700;
+    font-size: 1.125rem;
+    height:100%;
+    align-items: center;
+    padding-left: 1.5rem;
+}
+
+.NavItemContainer a:hover{
+    background-color: rgb(var(--gtd-orange),1);
+}

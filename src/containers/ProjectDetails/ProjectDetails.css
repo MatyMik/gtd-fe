@@ -1,0 +1,30 @@
+.Title{
+    margin: 1rem auto 1rem auto;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(var(--gtd-orange))
+}
+
+.SectionTitle{
+    margin: 3rem auto 1rem auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: left;
+    color: rgb(var(--gtd-orange));
+    margin-left:5%;
+    display:grid;
+    align-content: center;
+    grid-template-columns: 1fr 8fr;
+}
+
+.Iframe{
+    width:90%;
+    height: 100vh;
+    border:none;
+}
+
+.AddNextactionSVG{
+    height:1rem;
+    margin-left: 2rem;
+    align-self: center;
+}

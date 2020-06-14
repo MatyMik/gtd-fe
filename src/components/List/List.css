@@ -1,0 +1,41 @@
+.ListContainer{
+    width:70%;
+    margin: 2rem 10%;
+}
+
+.ListHeader{
+    height:3rem;
+    display:grid;
+    grid-template-columns: 1fr 5fr 1fr 1fr;
+    /*background-color: rgba(var(--gtd-orange),0.5);*/
+    border-bottom: 1px solid rgba(var(--gtd-orange),0.5);
+    /*border-radius: 1rem;*/    
+    align-content: center;
+    display:grid;
+    font-weight: bold;
+    color: rgb(var(--gtd-orange));;
+}
+
+.ListName{
+    height:100%;  
+    font-size:1.5rem; 
+}
+
+.ListHeaderAdditional{
+    align-content: center;
+    display:grid;
+    cursor: pointer;
+}
+
+.AddProject{
+    position: relative;
+    align-content: center;
+    display:grid;
+    cursor: pointer;
+}
+
+.ProjectNameInput{
+    position: absolute; 
+    left:1rem; 
+    top:1.5rem;
+}

@@ -1,0 +1,40 @@
+.ProjectListItem {
+    
+    
+    height: 2.5rem;
+    align-content: center;
+    display:grid;
+    grid-template-columns: 1fr 6fr 1fr 1fr 1fr;
+    width:90%;
+    border-radius: 2rem;
+    margin: 2px auto;   
+}
+
+.SVG {
+    height:2rem;
+    margin:auto
+
+}
+
+.Active {
+    border: 1px solid rgba(var(--gtd-orange), 0.3);
+    
+}
+
+.Done {
+    background-color: rgb(207, 205, 204);
+    border: 1px solid rgb(207, 205, 204);
+}
+
+.CenterText {
+    display: grid;
+    align-content: stretch;
+}
+.Switch {
+    width:100%;
+}
+
+.CenterSwitch{
+    display: inline-grid;
+    justify-content: center;
+}

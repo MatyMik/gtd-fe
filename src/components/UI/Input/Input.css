@@ -1,0 +1,41 @@
+.InputContainer{
+    width: 100%;
+    margin:auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding:  3rem 0;
+}
+
+.InputContainer:hover{
+    background-color: rgba(var(--gtd-orange),0.1);
+}
+
+.InputContainer:focus-within{
+    background-color: rgba(var(--gtd-orange),0.1);
+}
+
+
+input{
+    border: none;
+    border-bottom: 2px solid rgba(var(--gtd-orange),1);
+    margin:auto;
+    width:80%;
+    height: 1.5rem;
+}
+
+input:focus{
+    outline:transparent;
+}
+
+.ModalContainer{
+    width: 100%;
+    margin:auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding:  3rem 0;
+}
+
+.InputLabel {
+    color:rgba(var(--gtd-orange),1);
+    font-weight: bold;
+}

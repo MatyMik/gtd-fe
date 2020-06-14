@@ -1,0 +1,22 @@
+.NextActioncontainer{
+    width:70%;
+    border: 1px solid rgb(var(--gtd-orange));
+    border-radius:2rem;
+    display: grid;
+    grid-template-columns: 8fr 2fr 2fr 1fr;
+    align-content: center;
+    margin:auto;
+}
+
+.CenterTitle {
+    display: grid;
+    align-content: center;
+    text-align: left;
+    margin-left:20%;
+}
+
+.DeleteIcon{
+    height: 1rem;
+    display: grid;
+    justify-content: center;
+}

@@ -1,0 +1,27 @@
+.NavigationContainerForHover{
+    position: fixed;
+    top:0;
+    float:left;
+    z-index:50;
+}
+
+.NavigationContainer{
+    background-color: rgb(var(--gtd-black));
+    display: grid;
+    position: fixed;
+    width: 15%;
+    height:100vh;
+    align-items: center;
+    grid-template-rows: repeat(7, 10vh) 1fr;
+    transform: translateX(-80%);
+    transition: 0.3s;
+}
+
+.NavigationContainerForHover:hover div{
+    transform: translateY(0);
+    transition: 0.3s;
+}
+
+.Logout{
+    cursor: pointer;
+}

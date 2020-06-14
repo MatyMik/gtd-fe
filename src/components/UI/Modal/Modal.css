@@ -1,0 +1,14 @@
+.Modal{
+    position: absolute;
+    display:grid;
+    top:25%;
+    left:40%;
+    width: 20%;
+    z-index: 1000;
+    border:1px solid rgb(var(--gtd-orange));
+    border-radius: 1rem;
+    padding: 2rem 0;
+    text-align: center;
+    background-color: white;
+    
+}

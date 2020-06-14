@@ -1,0 +1,25 @@
+:root{
+  --basic-color: 14, 164, 175;
+  --gtd-black:50,50,50;
+  --gtd-orange: 255, 100, 0;
+  
+}
+
+html {
+  height:100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  min-height:100%;
+}
+
+#root {
+  min-height:100vh;
+}
+
+.App{
+  min-height:100vh;
+}

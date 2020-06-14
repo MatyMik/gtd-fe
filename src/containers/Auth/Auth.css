@@ -1,0 +1,33 @@
+.AuthContainer {
+    height:100vh;
+    width:100%;
+    margin: auto;
+    display:grid;
+    background-color: rgb(var(--gtd-black));
+    grid-template-columns: 2fr 1fr;
+}
+
+.AuthFormContainer {
+    background-color: white;
+    display:grid;
+    grid-template-rows: 4fr 2fr;
+    grid-gap: 0;
+}
+
+.ImageContainer img{
+    margin-top: 6rem;
+    width: 100%;
+    
+}
+
+.SwitchText{
+    margin: auto;
+    margin-top: 1rem;
+    width:50%;
+    color: rgb(var(--gtd-orange))
+}
+
+.SwitchText span{
+    color: rgb(var(--gtd-black));
+    cursor: pointer;
+}

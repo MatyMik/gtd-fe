@@ -1,0 +1,14 @@
+.AuthButton{
+    margin:auto;
+    margin-top:2rem;
+    border: none;
+    background:none;
+    background-image: radial-gradient(rgb(var(--gtd-orange)) 30%, rgb(var(--gtd-black)));
+    display: inline-block;
+    width: 60%;
+    height: 3rem;
+    color: white;
+    font-size:1.5rem;
+    font-weight: bold;
+    
+}
