@@ -44,7 +44,7 @@ const projectDetails = props => {
             setAddNewItem(false)
         }
         if(nextActions && nextActions.length===0 && !props.loading && !loadingNextActions){
-            props.getNextActions(props.userId, projectId)
+            props.getNextActions(undefined, projectId)
             setLoadingNextActions(true)
         }
         if(props.nextActions && props.nextActions !== nextActions && !props.lodaingNextAction){
@@ -145,7 +145,7 @@ const mapDispatchToProps = dispatch => {
         setPopupType: popupType => dispatch(setPopupType(popupType)),
         unhidePopup: ()=> dispatch(showPopup()),
         addItemToProject: projectDetails => dispatch(addItemToProject(projectDetails)),
-        getNextActions: (usrId, projectId) => dispatch(getNextActions(usrId, projectId))
+        getNextActions: (userId, projectId) => dispatch(getNextActions(userId, projectId))
     }
 }
 
