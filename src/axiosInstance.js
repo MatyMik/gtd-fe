@@ -1,7 +1,9 @@
 import axios from "axios";
+import runtimeEnv from '@mars/heroku-js-runtime-env';
+const env = runtimeEnv();
 
 const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_BE_ADDRESS ,
+    baseURL: env.REACT_APP_BE_ADDRESS ,
     withCredentials: true
 })
 
