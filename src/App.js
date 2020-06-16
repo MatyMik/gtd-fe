@@ -16,7 +16,7 @@ const App = props => {
 
   useEffect(()=>{
     if(!props.isAuthenticated){
-      props.onAutoLogin()
+      //props.onAutoLogin()
     }
     //see if any error occured
     const reqInterceptor = axios.interceptors.request.use( req => {
