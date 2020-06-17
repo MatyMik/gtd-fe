@@ -46,7 +46,7 @@ const Auth = props => {
     },[])
     useEffect(()=>{
         //the redirects after login and after signup
-        if(loaded === true && props.loading === false){
+        if(loaded === true && props.loading === false && props.isAuthenticated){
             if(page==='login'){
                 history.push("/")
             } else {
