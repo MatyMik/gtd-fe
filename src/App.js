@@ -15,8 +15,8 @@ const App = props => {
   const history = useHistory();
 
   useEffect(()=>{
-    if(!props.isAuthenticated){
-      //props.onAutoLogin()
+    if(!props.isAuthenticated && !props.loading){
+      props.onAutoLogin()
     }
     //see if any error occured
     const reqInterceptor = axios.interceptors.request.use( req => {
