@@ -15,7 +15,7 @@ const App = props => {
   const history = useHistory();
 
   useEffect(()=>{
-    if(!props.isAuthenticated && !props.loading){
+    if(!props.isAuthenticated && !props.loading && !props.autoLoinTried){
       console.log(props);
       props.onAutoLogin()
     }
@@ -68,7 +68,8 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    autoLoinTried: state.auth.autoLoinTried
   }
 }
 
