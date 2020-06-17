@@ -4,7 +4,8 @@ const initialState = {
     isAuthenticated: false,
     loading: false, 
     error: null,
-    userId: null
+    userId: null,
+    autoAuthenticateTried: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -72,6 +73,23 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.error
+            }
+        }
+        case(actionTypes.AUTO_LOGIN_SUCCESS): {
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: true,
+                userId: action.userId,
+                autoLoginTried: true
+            }
+        }
+        case(actionTypes.AUTO_LOGIN_FAILED): {
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated: false,
+                autoLoginTried: true
             }
         }
         default:

@@ -16,6 +16,7 @@ const App = props => {
 
   useEffect(()=>{
     if(!props.isAuthenticated && !props.loading){
+      console.log(props);
       props.onAutoLogin()
     }
     //see if any error occured

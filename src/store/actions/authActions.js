@@ -105,7 +105,22 @@ export const autoLogin = () => {
         dispatch(loginStarted())
         const userId = localStorage.getItem("userId")
         if (userId) {
-            dispatch(loginSuccess(userId))
+            dispatch(autoLoginSuccess(userId))
+        } else {
+            dispatch(autoLoginFailed())
         }
+    }
+}
+
+export const autoLoginSuccess = (userId) => {
+    return {
+        type:actionTypes.AUTO_LOGIN_SUCCESS,
+        userId
+    }
+}
+
+export const autoLoginFailed = () => {
+    return {
+        type:actionTypes.AUTO_LOGIN_FAILED
     }
 }
