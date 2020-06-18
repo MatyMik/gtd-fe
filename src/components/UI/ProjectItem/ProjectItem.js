@@ -2,7 +2,10 @@ import React, { Fragment } from "react";
 import "./ProjectItem.css"
 
 const projectItem = props => {
-    let item = <iframe className="Iframe" src = {props.item}/>
+    if(props.item === true) {
+        return null;
+    }
+    let item = <iframe className="Iframe" src = {props.item} title = {Math.random()}/>
     if(props.itemType ==='table') {
         item = <table/>
     }

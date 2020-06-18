@@ -6,7 +6,9 @@ const initialState = {
     addNewList:false,
     addNewProject: false,
     addNewIframe: false,
-    loadingNextAction: false
+    loadingNextAction: false,
+    nextActions: null,
+    nextActionProject: null
 }
 
 const listReducer = (state = initialState, action) => {
@@ -148,7 +150,7 @@ const listReducer = (state = initialState, action) => {
         case(actionTypes.ADD_NEW_NEXT_ACTION_SUCCESS): {
             return {
                 ...state,
-                nextActions:action.nextActions,
+                nextActionProject:action.nextActions,
                 loading: false
             }
         }
@@ -177,6 +179,33 @@ const listReducer = (state = initialState, action) => {
                 ...state,
                 error: action.error,
                 loadingNextAction: false
+            }
+        }
+        case(actionTypes.GET_NEXT_ACTIONS_FOR_PROJECT_START):{
+            return { 
+                ...state,
+                loadingNextAction:true
+            }
+        }
+        case(actionTypes.GET_NEXT_ACTIONS_FOR_PROJECT_SUCCESS):{
+            return {
+                ...state,
+                nextActionProject: action.nextActions,
+                loadingNextAction: false
+            }
+        }
+        case(actionTypes.GET_NEXT_ACTIONS_FOR_PROJECT_FAILED):{
+            return {
+                ...state,
+                error: action.error,
+                loadingNextAction: false
+            }
+        }
+        case(actionTypes.SET_NEXT_ACTIONS_TO_NULL): {
+            return {
+                ...state,
+                nextActions: [],
+                nextActionProject: []
             }
         }
         default:

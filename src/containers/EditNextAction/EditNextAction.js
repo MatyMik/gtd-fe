@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment"
 import "./EditNextAction.css"
 import Input from "../../components/UI/Input/Input";
 import Textarea from "../../components/UI/Textarea/Textarea";
 import Button from "../../components/UI/Button/Button";
 import { useParams, useHistory } from "react-router";
-import {addNewNextAction} from "../../store/actions"
+import {addNewNextAction, getNextActions, setNextActionsToNull} from "../../store/actions"
 import { connect } from "react-redux";
+
 
 const editNextAction = props => {
     const [title, setTitle] = useState("");
@@ -20,15 +20,15 @@ const editNextAction = props => {
     useEffect(()=> {
         // If edit, load the data
     },[])
+
     useEffect(()=> {
         console.log(title, dueDate, time, notes)
     },[title, notes, time, dueDate])
 
     const timeInputHandler = time => {
-        const hours = parseInt(time.slice(0,2));
-        const minutes = parseInt(time.slice(3,5));
+        const hours = parseInt(time.slice(0,2), 10);
+        const minutes = parseInt(time.slice(3,5), 10);
         const timestamp = hours * 60*60*1000 + minutes*60*1000
-        console.log(dueDate)
         setTime(timestamp);
     }
 
@@ -44,6 +44,8 @@ const editNextAction = props => {
         }
         props.addNextAction(nextActionData)
         const redirectPage = sessionStorage.getItem("pageBeforeAddNextAction") || "/private"
+        //set nextActions to zero
+        props.setNextActionsToNull();
         history.push(redirectPage)
     }
 
@@ -70,7 +72,7 @@ const editNextAction = props => {
                 type = 'time'
                 changed = {event =>timeInputHandler(event.target.value)}/>
             </div>
-            <Textarea name ="notes" title="Notes" changed = {event => setNotes(event.target.value)}/>
+                <Textarea name ="notes" title="Notes" value = {notes} changed = {event => setNotes(event.target.value)}/>
             <Button 
             btnType="submit"
             btnClass = 'AuthButton'
@@ -90,7 +92,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addNextAction: nextActionData => dispatch(addNewNextAction(nextActionData))
+        addNextAction: nextActionData => dispatch(addNewNextAction(nextActionData)),
+        getNextActions: userId => dispatch(getNextActions(userId)),
+        setNextActionsToNull: () => dispatch(setNextActionsToNull())
     }
 }
 

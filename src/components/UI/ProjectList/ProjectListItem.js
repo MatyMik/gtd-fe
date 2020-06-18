@@ -34,9 +34,9 @@ const ProjectListItem = memo(props => {
     
     const handleItems = done ? null: (
         <Fragment>
-            <img className = 'SVG' data-tip = 'Add next action' src = {require("../../../images/add.svg")} onClick={()=>addNextActionHandler()}/>
+            <img className = 'SVG' alt = "" data-tip = 'Add next action' src = {require("../../../images/add.svg")} onClick={()=>addNextActionHandler()}/>
             <ReactTooltip />
-            <img className = 'SVG' data-tip = 'View detils' src = {require("../../../images/eyes.svg")} onClick={()=>detailsHandler()}/>
+            <img className = 'SVG' alt = "" data-tip = 'View detils' src = {require("../../../images/eyes.svg")} onClick={()=>detailsHandler()}/>
             <ReactTooltip />
             <div data-tip = 'Active this week?' className = "CenterSwitch">
                 <Switch className = 'Switch' onChange={activationHandler} checked={activeThisWeek} />
@@ -47,7 +47,7 @@ const ProjectListItem = memo(props => {
     )
     return(
         <div className = {cssProject}>
-            <img className = 'SVG' src = {require("../../../images/done.svg")} onClick={()=>doneHandler()}/>
+            <img className = 'SVG' alt = "" src = {require("../../../images/done.svg")} onClick={()=>doneHandler()}/>
             <div className="CenterText">
             {props.title}
             </div>

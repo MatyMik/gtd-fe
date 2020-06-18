@@ -16,7 +16,6 @@ const App = props => {
 
   useEffect(()=>{
     if(!props.isAuthenticated && !props.loading && !props.autoLoinTried){
-      console.log(props);
       props.onAutoLogin()
     }
     //see if any error occured
@@ -44,7 +43,6 @@ const App = props => {
     if(firstPageLoad){
       const lastPageVisited = localStorage.getItem("lastPage")
       if(lastPageVisited){
-        console.log(lastPageVisited)
         history.push(lastPageVisited)
       }
       setFirstPageLoad(false)

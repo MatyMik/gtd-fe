@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./ProjectDetails.css"
-import {getProject, setAddNewItemStateSuccess, addItemToProject, setPopupText, setPopupType, showPopup, getNextActions} from "../../store/actions"
+import {getProject, setAddNewItemStateSuccess, addItemToProject, setPopupText, setPopupType, showPopup, getNextActionsForProject} from "../../store/actions"
 import { connect } from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { useParams, useHistory } from "react-router";
 import * as popupTypes from "../../utils/popupTypes"
 import ProjectItem from "../../components/UI/ProjectItem/ProjectItem";
 import NextAction from "../../components/NextAction/NextAction";
-import nextAction from "../../components/NextAction/NextAction";
 
 const projectDetails = props => {
     const [project, setProject] = useState(null);
     const [loading, setLoading] = useState(false);
     const [addNewItem, setAddNewItem] = useState(false)
-    const [itemType, setItemType] = useState("Iframe")
+    const [itemType
+        //, setItemType
+    ] = useState("Iframe")
     const [loadingNextActions, setLoadingNextActions] = useState(false);
     const [nextActions, setNextActions] = useState([]);
 
@@ -47,9 +48,8 @@ const projectDetails = props => {
             props.getNextActions(undefined, projectId)
             setLoadingNextActions(true)
         }
-        if(props.nextActions && props.nextActions !== nextActions && !props.lodaingNextAction){
-            console.log(props.nextActions)
-            setNextActions(props.nextActions)
+        if(props.nextActionProject && props.nextActionProject !== nextActions && !props.lodaingNextAction){
+            setNextActions(props.nextActionProject)
             setLoadingNextActions(false)
         }
     },[props])
@@ -64,7 +64,7 @@ const projectDetails = props => {
                                     ) :  null 
                         : null;
 
-    const nextActionsMapped = nextActions.map(nA => {
+    const nextActionsMapped = nextActions.map((nA, index) => {
         const dueDate = new Date(nA.dueDate)
         const dateTransformed = dueDate.getFullYear() +"/" + (dueDate.getMonth()+1) +"/" + dueDate.getDate()
         const time = nA.time;
@@ -77,7 +77,7 @@ const projectDetails = props => {
             minutes = "0"+minutes.toString()
         }
         const timeTransformed = hours+":"+minutes;
-        return <NextAction title = {nA.title} key = {nA.title} dueDate = {dateTransformed} time = {timeTransformed}/>
+        return <NextAction title = {nA.title} key = {index} dueDate = {dateTransformed} time = {timeTransformed}/>
     })
     const addItemHandler = () => {
         props.setPopupType(popupTypes.INPUT)
@@ -100,26 +100,24 @@ const projectDetails = props => {
 
             <div>
                 <div >
-                    <div className = "SectionTitle" >Next Actions <img className = 'AddNextactionSVG' src = {require("../../images/add.svg")} onClick={addNextActionHandler}/> </div>
-                    
+                    <div className = "SectionTitle" >Next Actions 
+                        <img className = 'AddNextactionSVG' alt = "" src = {require("../../images/add.svg")} onClick={addNextActionHandler}/> 
+                    </div>  
                     {nextActionsMapped}
                 </div>
                 <div>
 
                 </div>
             </div>
-            
             <div>
                 <div className = "SectionTitle">
                     Tables
-                    <img className = 'AddNextactionSVG' src = {require("../../images/add.svg")} onClick = {addItemHandler}/>
+                    <img className = 'AddNextactionSVG' alt = "" src = {require("../../images/add.svg")} onClick = {addItemHandler}/>
                 </div>
                 <div>
                 {projectItems}
                 </div>
-            </div>
-            {/*<iframe className = "Iframe" src = "https://docs.google.com/spreadsheets/d/1rBCC95aCAgW77yevOIUJOJuoPvSRsA3G2jBGj_C5Ldo/edit?usp=sharing"/>*/}
-            
+            </div>            
         </div>
     )
 }
@@ -132,7 +130,7 @@ const mapStateToProps = state => {
         addNewItemState: state.listAndProject.addNewItem,
         inputEntered: state.popup.inputEntered,
         inputContent: state.popup.inputContent,
-        nextActions: state.listAndProject.nextActions,
+        nextActionProject: state.listAndProject.nextActionProject,
         loadingNextAction: state.listAndProject.loadingNextAction
     }
 }
@@ -145,7 +143,7 @@ const mapDispatchToProps = dispatch => {
         setPopupType: popupType => dispatch(setPopupType(popupType)),
         unhidePopup: ()=> dispatch(showPopup()),
         addItemToProject: projectDetails => dispatch(addItemToProject(projectDetails)),
-        getNextActions: (userId, projectId) => dispatch(getNextActions(userId, projectId))
+        getNextActions: (userId, projectId) => dispatch(getNextActionsForProject(userId, projectId))
     }
 }
 

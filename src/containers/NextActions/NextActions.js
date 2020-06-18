@@ -2,27 +2,34 @@ import React, { useEffect, useState } from "react";
 import "./NextActions.css";
 import {getNextActions} from "../../store/actions"
 import { connect } from "react-redux";
-import nextAction from "../../components/NextAction/NextAction";
+import ProjectsOfNextActions from "../../components/ProjectsOfNextActions/ProjectsOfNextActions";
 
 const nextActions = props => {
     const [nextActionsFromServer, setNextActionsFromServer] = useState([]);
+    const [nextActionsLoaded, setNextActionsLoaded] = useState(false);
+
+    const today = new Date()
+    const todayFilter = today.getFullYear()+"/" + (today.getMonth()+1) + "/" + today.getDate()
+
+    useEffect(()=> {
+        props.getNextActions(props.userId)
+    },[])
 
     useEffect(()=>{
-        props.getNextActions(props.userId)
-        if(nextActionsFromServer && nextActionsFromServer.length===0 && !props.loading){
+        if((!nextActionsFromServer || nextActionsFromServer.length===0) && !props.loading && !nextActionsLoaded && props.nextActions && props.nextActions.length>0){
             setNextActionsFromServer(props.nextActions);
+            setNextActionsLoaded(true)   
         }
-        console.log(nextActionsFromServer)
+        
     },[props])
 
+    const nextActionsMapped = nextActionsFromServer ? nextActionsFromServer.map((project, index) => {
+        return <ProjectsOfNextActions title = {project.projectTitle} nextActions = {project.nextActions} key = {index}/>
+    }) : null;
     return(
-        <div className = "NextActioncontainer">
-            <div classN>
-                {props.title}
-            </div>
-            <div>
-                <img alt = "" src = {require("../../images/trash.svg")}/>
-            </div>
+        <div className = "AllNextActionContainer">
+            {nextActionsMapped}
+
         </div>
     )
 }
@@ -30,7 +37,8 @@ const nextActions = props => {
 const mapStateToProps = state => {
     return {
         userId: state.auth.userId,
-        nextActions: state.listAndProject.nextActions
+        nextActions: state.listAndProject.nextActions,
+        loading: state.auth.loading
     }
 }
 

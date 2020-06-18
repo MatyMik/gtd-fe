@@ -1,7 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axiosInstance";
-import { getListsStart, addNewListStart, addNewListSuccess } from "./listActions";
-import projectDetails from "../../containers/ProjectDetails/ProjectDetails";
+import { getListsStart} from "./listActions";
 
 export const addNewProjectStart = ()=> {
     return {
@@ -67,7 +66,6 @@ export const getProject = ({projectId, userId}) => {
         axios.get("/getproject/"+userId + "/"+projectId)
         .then(response => {
             const project = response.data.project
-            console.log(project)
             dispatch(getProjectSuccess(project))
         })
         .catch(err => dispatch(getProjectFailed(err)))
@@ -103,7 +101,6 @@ export const addItemToProjectFailed = error => {
 
 export const addItemToProject = (projectData) => {
     return dispatch => {
-        console.log(projectData)
         dispatch(addItemToProjectStart())
         axios.post("/additemtoproject", projectData)
         .then(response => {
@@ -154,14 +151,14 @@ export const getNextActionsStart = () => {
 
 export const getNextActionsSuccess = nextActions => {
     return {
-        type: actionTypes.ADD_NEW_NEXT_ACTION_SUCCESS,
+        type: actionTypes.GET_NEXT_ACTIONS_SUCCESS,
         nextActions
     }
 }
 
 export const getNextActionsFailed = error => {
     return {
-        type: actionTypes.ADD_NEW_NEXT_ACTION_FAILED,
+        type: actionTypes.GET_NEXT_ACTIONS_FAILED,
         error
     }
 }
@@ -176,4 +173,46 @@ export const getNextActions = (userId, projectId) => {
         })
         .catch(err => dispatch(getNextActionsFailed(err)))
     }
+}
+
+export const getNextActionsForProjectStart = () => {
+    return {
+        type: actionTypes.GET_NEXT_ACTIONS_FOR_PROJECT_START
+    }
+}
+
+export const getNextActionsForProjectSuccess = nextActions => {
+    return {
+        type: actionTypes.GET_NEXT_ACTIONS_FOR_PROJECT_SUCCESS,
+        nextActions
+    }
+}
+
+export const getNextActionsForProjectFailed = error => {
+    return {
+        type: actionTypes.GET_NEXT_ACTIONS_FOR_PROJECT_FAILED,
+        error
+    }
+}
+
+export const getNextActionsForProject = (userId, projectId) => {
+    return dispatch => {
+        dispatch(getNextActionsForProjectStart())
+        axios.get("/getnextactions/" + userId + "/" + projectId)
+        .then(response => {
+            const nextactions = response.data.nextActions
+            dispatch(getNextActionsForProjectSuccess(nextactions))
+        })
+        .catch(err => dispatch(getNextActionsForProjectFailed(err)))
+    }
+}
+
+export const setNextActionsToNullEvent = () => {
+    return {
+        type: actionTypes.SET_NEXT_ACTIONS_TO_NULL
+    }
+}
+
+export const setNextActionsToNull = () => {
+    return dispatch => dispatch(setNextActionsToNull);
 }

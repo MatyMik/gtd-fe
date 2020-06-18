@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import "./List.css";
 import ProjectListItem from "../UI/ProjectList/ProjectListItem";
 import {connect} from "react-redux";
@@ -29,9 +29,14 @@ const List = memo(props => {
         // if both true => addnewpopup
     },[props]);
     const projects = props.projects;
-    const projectList = showProjects ? projects.map(project => (
+    const projectList = showProjects ? projects.map(project => {
+        console.log(project)
+         return (
+        
         <ProjectListItem title ={project.title} key = {project.title} projectId = {project.id} userId = {props.userId}/>
-    )) : null;
+    )
+        }
+    ) : null;
 
     //const input = showInput ? <input type='text' className='ProjectNameInput'/> : null;
     
@@ -50,12 +55,10 @@ const List = memo(props => {
 
     return(
         <div className = "ListContainer">
-            
             <div className = "ListHeader">
                 <div className = "ListHeaderAdditional"  onClick={()=>openProjectListHandler()}>
                     Show Projects
                 </div>
-
                 <div className = "ListName">
                         {props.title}
                 </div>

@@ -1,9 +1,9 @@
 .NextActioncontainer{
-    width:70%;
+    width:90%;
     border: 1px solid rgb(var(--gtd-orange));
     border-radius:2rem;
     display: grid;
-    grid-template-columns: 8fr 2fr 2fr 1fr;
+    grid-template-columns: 8fr 2fr 2fr 1fr 1fr;
     align-content: center;
     margin:auto;
 }
@@ -20,3 +20,4 @@
     display: grid;
     justify-content: center;
 }
+

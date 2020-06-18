@@ -1,5 +1,6 @@
 import React from "react";
 import "./Teaxtarea.css"
+import Linkify from 'react-linkify';
 
 const textarea = props => {
     return(
@@ -7,7 +8,8 @@ const textarea = props => {
             <div className = "TextareaTitle">
                 {props.title}
             </div>
-            <textarea name = {props.name} className = 'Textarea' onChange = {props.changed}/>
+            
+                <textarea name = {props.name} className = 'Textarea' onChange = {props.changed}/>
         </div>
         
     )

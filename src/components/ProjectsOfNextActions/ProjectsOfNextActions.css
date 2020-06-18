@@ -1,0 +1,7 @@
+.ProjectTitleContainer{
+    border-bottom: 1px solid rgba(var(--gtd-black),1);
+    margin: 1rem auto;
+    color: rgb(var(--gtd-orange));
+    font-weight: bold;
+    font-size: 1.2rem;
+}

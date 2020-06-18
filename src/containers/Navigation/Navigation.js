@@ -21,6 +21,10 @@ const Navigation = props => {
             to: "/nextactions",
             title: "Next Actions"
         },
+        myFrame:{
+            to: "/myframe",
+            title: "MyFrame"
+        },
         logs: {
             to: "/logs",
             title: "Logs"
