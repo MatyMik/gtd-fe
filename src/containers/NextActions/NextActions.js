@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./NextActions.css";
-import {getNextActions} from "../../store/actions"
+import {getNextActions, deleteNextAction} from "../../store/actions"
 import { connect } from "react-redux";
 import ProjectsOfNextActions from "../../components/ProjectsOfNextActions/ProjectsOfNextActions";
 
@@ -8,8 +8,8 @@ const nextActions = props => {
     const [nextActionsFromServer, setNextActionsFromServer] = useState([]);
     const [nextActionsLoaded, setNextActionsLoaded] = useState(false);
 
-    const today = new Date()
-    const todayFilter = today.getFullYear()+"/" + (today.getMonth()+1) + "/" + today.getDate()
+    //const today = new Date()
+    //const todayFilter = today.getFullYear()+"/" + (today.getMonth()+1) + "/" + today.getDate()
 
     useEffect(()=> {
         props.getNextActions(props.userId)
@@ -24,7 +24,14 @@ const nextActions = props => {
     },[props])
 
     const nextActionsMapped = nextActionsFromServer ? nextActionsFromServer.map((project, index) => {
-        return <ProjectsOfNextActions title = {project.projectTitle} nextActions = {project.nextActions} key = {index}/>
+        return <ProjectsOfNextActions 
+        title = {project.projectTitle} 
+        nextActions = {project.nextActions} 
+        key = {index} 
+        deleteNA = {(nextActionId,userId, projectId) =>props.deleteNextAction(nextActionId,userId, projectId)}
+        userId = {props.userId}
+        projectId = {project._id}
+        />
     }) : null;
     return(
         <div className = "AllNextActionContainer">
@@ -44,7 +51,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getNextActions: userId => dispatch(getNextActions(userId))
+        getNextActions: userId => dispatch(getNextActions(userId)),
+        deleteNextAction: (nextActionId,userId, projectId) => dispatch(deleteNextAction(nextActionId,userId,projectId))
     }
 }
 

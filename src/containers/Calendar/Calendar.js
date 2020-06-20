@@ -35,12 +35,6 @@ const CalendarView = props => {
       }
     }
 
-    /*const resizeEvent = ({event, start, end}) => {
-        const newEvents = events.map(existingEvent => {
-            return existingEvent.id === event.id ? {...existingEvent, start, end} : existingEvent
-        }) 
-        setEvents(newEvents);
-    }*/
     return (
         <div className = "CalendarContainer">
             <DragAndDropCalendar
@@ -49,11 +43,14 @@ const CalendarView = props => {
             events = {events}
             step={60}
             views={allViews}
-            defaultDate={new Date(2020, 4, 1)}
+            defaultDate={new Date(2020, 5, 1)}
             onSelectSlot = {handleSelect}
             />
+            
         </div>
     )
 }
 
 export default CalendarView;
+
+//<iframe className="GoogleCalendar" src="https://calendar.google.com/calendar/embed?src=matyasmiklos@gmail.com"/>

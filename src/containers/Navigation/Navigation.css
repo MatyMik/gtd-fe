@@ -12,7 +12,7 @@
     width: 15%;
     height:100vh;
     align-items: center;
-    grid-template-rows: repeat(7, 10vh) 1fr;
+    grid-template-rows: repeat(8, 10vh) 1fr;
     transform: translateX(-80%);
     transition: 0.3s;
 }

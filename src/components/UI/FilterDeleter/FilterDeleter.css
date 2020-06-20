@@ -1,0 +1,8 @@
+.FilterDeleter{
+    word-wrap: break-word;
+    width: 70%;
+    margin: 4rem auto;
+    background-color: rgba(var(--gtd-orange),0.5);
+    display:grid;
+    align-content: center;
+}

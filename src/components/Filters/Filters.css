@@ -1,6 +1,8 @@
+.Filters{
+    margin-bottom: 0.3rem;
+}
 
-
-.AddNewItemHeader{
+.FilterHeader{
     background-color: rgba(var(--gtd-orange),0.3);
     border: 1px solid rgba(var(--gtd-orange),1);
     height: 2rem;
@@ -11,13 +13,13 @@
     padding: 0 1rem;
 }
 
-.AddNewItem-item{
+.Filter-item{
     width: 80%;
     margin: auto;
     border: 1px solid rgba(var(--gtd-orange),1);
     background-color: rgba(var(--gtd-orange),0.1);
     border-radius: 2rem;
-    height:1.5rem;
     display:grid;
     align-content: center;
+    word-wrap: break-word;
 }

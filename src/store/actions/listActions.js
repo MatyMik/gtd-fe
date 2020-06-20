@@ -21,10 +21,10 @@ export const getListsFailed = error => {
     }
 }
 
-export const getLists = userId => {
+export const getLists = (userId, querydata = null) => {
     return dispatch => {
         dispatch(getListsStart())
-        axios.get("/getlists/"+userId)
+        axios.get("/getlists/"+userId, {params: querydata})
         .then( response => {
             const lists = response.data.lists
             dispatch(getListsSuccess(lists))

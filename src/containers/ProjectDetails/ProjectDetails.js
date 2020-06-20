@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ProjectDetails.css"
-import {getProject, setAddNewItemStateSuccess, addItemToProject, setPopupText, setPopupType, showPopup, getNextActionsForProject} from "../../store/actions"
+import {getProject, setAddNewItemStateSuccess, addItemToProject, 
+    setPopupText, setPopupType, showPopup, getNextActionsForProject, deleteNextAction} from "../../store/actions"
 import { connect } from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { useParams, useHistory } from "react-router";
@@ -77,7 +78,15 @@ const projectDetails = props => {
             minutes = "0"+minutes.toString()
         }
         const timeTransformed = hours+":"+minutes;
-        return <NextAction title = {nA.title} key = {index} dueDate = {dateTransformed} time = {timeTransformed}/>
+        return <NextAction 
+        id = {nA._id}
+        title = {nA.title} 
+        key = {index} 
+        dueDate = {dateTransformed} 
+        time = {timeTransformed}
+        projectId = {nA.projectId}
+        deleteNA = {(nextActionId,userId, projectId) =>props.deleteNextAction(nextActionId,userId, projectId)}
+        />
     })
     const addItemHandler = () => {
         props.setPopupType(popupTypes.INPUT)
@@ -88,7 +97,6 @@ const projectDetails = props => {
     }
 
     const addNextActionHandler = () => {
-        console.log(props)
         sessionStorage.setItem("pageBeforeAddNextAction", props.location.pathname)
         history.push("/addnextaction/"+projectId)
     }
@@ -143,7 +151,8 @@ const mapDispatchToProps = dispatch => {
         setPopupType: popupType => dispatch(setPopupType(popupType)),
         unhidePopup: ()=> dispatch(showPopup()),
         addItemToProject: projectDetails => dispatch(addItemToProject(projectDetails)),
-        getNextActions: (userId, projectId) => dispatch(getNextActionsForProject(userId, projectId))
+        getNextActions: (userId, projectId) => dispatch(getNextActionsForProject(userId, projectId)),
+        deleteNextAction: (nextActionId,userId, projectId) => dispatch(deleteNextAction(nextActionId,userId,projectId))
     }
 }
 

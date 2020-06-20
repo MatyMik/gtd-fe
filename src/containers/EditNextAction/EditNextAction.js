@@ -22,7 +22,7 @@ const editNextAction = props => {
     },[])
 
     useEffect(()=> {
-        console.log(title, dueDate, time, notes)
+        //console.log(title, dueDate, time, notes)
     },[title, notes, time, dueDate])
 
     const timeInputHandler = time => {

@@ -2,7 +2,8 @@ import React, { useState, useEffect, memo } from "react";
 import "./List.css";
 import ProjectListItem from "../UI/ProjectList/ProjectListItem";
 import {connect} from "react-redux";
-import {showPopup, setPopupType, setPopupText, addNewProject, setAddNewProjectStateSuccess} from "../../store/actions"
+import {showPopup, setPopupType, setPopupText, 
+    addNewProject, setAddNewProjectStateSuccess, deleteProject} from "../../store/actions"
 import * as popupTypes from "../../utils/popupTypes";
 
 
@@ -30,10 +31,19 @@ const List = memo(props => {
     },[props]);
     const projects = props.projects;
     const projectList = showProjects ? projects.map(project => {
-        console.log(project)
          return (
         
-        <ProjectListItem title ={project.title} key = {project.title} projectId = {project.id} userId = {props.userId}/>
+        <ProjectListItem 
+        title ={project.title} 
+        key = {project.title} 
+        projectId = {project._id} 
+        userId = {props.userId}
+        listId = {props.listId}
+        active = {project.active}
+        activeWeekFilter = {props.activeWeekFilter}
+        toggleActiveProject = {props.toggleActiveProject}
+        deleteProject = {(projectId,userId, listId) => deleteProjectHandler(projectId,userId, listId)}
+        />
     )
         }
     ) : null;
@@ -51,6 +61,11 @@ const List = memo(props => {
         props.setAddNewProjectStateSuccess()
         setAddNewProject(true)
         
+    }
+
+    const deleteProjectHandler = (projectId, userId, listId) =>{
+        const deleteData = {projectId, userId, listId}
+        props.deleteProject(deleteData)
     }
 
     return(
@@ -91,7 +106,8 @@ const mapDispatchToProps = dispatch => {
         setPopupType: popupType => dispatch(setPopupType(popupType)),
         setPopupText: popupText => dispatch(setPopupText(popupText)),
         addNewProject: (projectData)=> dispatch(addNewProject(projectData)),
-        setAddNewProjectStateSuccess: () => dispatch(setAddNewProjectStateSuccess())
+        setAddNewProjectStateSuccess: () => dispatch(setAddNewProjectStateSuccess()),
+        deleteProject: deleteData=> dispatch(deleteProject(deleteData))
     }
 }
 

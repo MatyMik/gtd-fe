@@ -1,6 +1,5 @@
 import React from "react";
 import "./Teaxtarea.css"
-import Linkify from 'react-linkify';
 
 const textarea = props => {
     return(

@@ -208,6 +208,48 @@ const listReducer = (state = initialState, action) => {
                 nextActionProject: []
             }
         }
+        case(actionTypes.DELETE_PROJECT_START): {
+            return { ...state, 
+                loading: true
+            }
+        }
+        case(actionTypes.DELETE_PROJECT_SUCCESS): {
+            return { ...state,
+                loading: false,
+                lists: action.lists
+            }
+        }
+        case(actionTypes.DELETE_PROJECT_FAILED): {
+            return { ...state,
+                error: action.error,
+                loading: false
+            }
+        }
+        case(actionTypes.DELETE_NEXT_ACTION_START): {
+            return { 
+                ...state,
+                loading: true
+            }
+        }
+        case(actionTypes.DELETE_NEXT_ACTION_ALL_SUCCESS): {
+            return { ...state, 
+                loading: false,
+                nextActions: action.nextActions
+            }
+        }
+        case(actionTypes.DELETE_NEXT_ACTION_SUCCESS): {
+            return { ...state, 
+                loading: false,
+                nextActionProject: action.nextActions
+            }
+        }
+        case(actionTypes.DELETE_NEXT_ACTION_FAILED): {
+            return { 
+                ...state, 
+                loading: false, 
+                error: action.error
+            }
+        }
         default:
             return state
     }

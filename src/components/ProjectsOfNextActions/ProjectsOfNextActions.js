@@ -3,7 +3,9 @@ import React from "react"
 import NextAction from "../NextAction/NextAction"
 
 const projectsOfNextActions = props => {
+    console.log(props)
     const nextActions = props.nextActions;
+    
     const nextActionsMapped = nextActions ? (nextActions.map((nA, index) => {
         let time = nA.time;
         if(typeof time ==="number") {
@@ -18,13 +20,23 @@ const projectsOfNextActions = props => {
             time = hours+":"+minutes;
              
         }
-        return <NextAction title = {nA.title} dueDate = {nA.dueDate} time = {time} notes = {nA.notes} key = {index}/>
+        return <NextAction 
+        title = {nA.title} 
+        dueDate = {nA.dueDate} 
+        time = {time} 
+        notes = {nA.notes} 
+        key = {index} 
+        deleteNA = {props.deleteNA} 
+        id = {nA._id}
+        userId = {props.userId}
+        />
     })): null;
     return (
-        <div>
+        <div className = "NextActionsWithProjectsContainer">
             <div className = "ProjectTitleContainer">
                 {props.title}
             </div>
+            <img src ={require("../../images/rightArrow.svg")} alt = "" className = "rightArrow"/>
             
             {nextActionsMapped}
         </div>

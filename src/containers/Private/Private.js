@@ -1,8 +1,10 @@
 import React, { useState, useEffect, memo } from "react";
 import "./Private.css";
 import List from "../../components/List/List";
-import AddNewItem from "../../components/AddNewItemButton/AddNewItemButton"
-import {getLists, setPopupText, setPopupType, showPopup, addNewList, setInputEntered, setAddNewListStateSuccess} from "../../store/actions"
+import SideMenu from "../../components/PrivatePageMenu/PrivatePageMenu"
+import {getLists, setPopupText, setPopupType, showPopup, 
+    addNewList, setInputEntered, 
+    setAddNewListStateSuccess, toggleActiveProject} from "../../store/actions"
 import { connect } from "react-redux";
 import * as popupTypes from "../../utils/popupTypes";
 import Spinner from "../../components/UI/Spinner/Spinner"
@@ -12,10 +14,16 @@ const Private = memo(props => {
     const [lists, setLists] = useState([])
     const [newListAdded, setNewListAdded] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [activeWeekFilter, setActiveWeekFilter] = useState(!localStorage.getItem("activeWeekFilter")==="false");
+    const [filterMenuOpen, setFilterMenuOpen] = useState(false)
+
     useEffect(()=>{
-        //populate the list before render
         const userId = props.userId;
-        props.getLists(userId)
+        const queryParameters = new URLSearchParams();
+        if(activeWeekFilter){
+            queryParameters.append('active', true)
+        }
+        props.getLists(userId,  queryParameters)
     },[])
     useEffect(()=>{
         
@@ -23,14 +31,12 @@ const Private = memo(props => {
             setLists(props.lists)
         }
         if(props.inputEntered && newListAdded && props.addNewListState){
-            console.log(props.inputEntered ,newListAdded)
             const userId = props.userId; 
             const title = props.inputContent;
             const listData = {
                 title,
                 userId
             } 
-            console.log(props)
             setNewListAdded(false)
             props.addNewList(listData)
             
@@ -38,9 +44,15 @@ const Private = memo(props => {
     },[props, lists, newListAdded])
     
    
-    
     const listsMapped = props.loading ? <Spinner/> : lists ? lists.map((list, index) => (
-        <List title={list.title} projects={list.projects} key={index} listId = {list._id}/>
+        <List 
+        title={list.title} 
+        projects={list.projects} 
+        key={index} 
+        listId = {list._id} 
+        activeWeekFilter = {activeWeekFilter}
+        toggleActiveProject={projectId => props.toggleActiveProject(projectId)}
+        userId = {props.udserId}/>
     )): null;
     
     const addNewListHandler = () => {
@@ -51,15 +63,34 @@ const Private = memo(props => {
         setMenuOpen(false)
         setNewListAdded(true);
     }
+    const activeWeekFilterHandler = () => {
+        setActiveWeekFilter(true)
+        setFilterMenuOpen(false)
+        localStorage.setItem("activeWeekFilter", true)
+    }
 
+    const activeWeekFilterDeleteHandler = () => {
+        setActiveWeekFilter(false)
+        localStorage.setItem("activeWeekFilter", false)
+    }
+
+
+    const filterMenuOpenHandler = () => {
+        setFilterMenuOpen(!filterMenuOpen)
+    }
     
     return(
         <div>
-         
                  {listsMapped}     
-            <AddNewItem 
+
+            <SideMenu
+            filterMenuOpenHandler = {() => filterMenuOpenHandler()}
+            filterMenuOpen = {filterMenuOpen}
+            thisWeekFilter = {() => activeWeekFilterHandler()} 
+            activeWeekFilterActivated = {activeWeekFilter}
             menuOpen = {menuOpen}
             clicked = {() =>setMenuOpen(!menuOpen)}
+            activeWeekFilterDeleteHandler = {activeWeekFilterDeleteHandler}
             addNewListClicked = { () => addNewListHandler()}/>
         </div>
     )
@@ -78,20 +109,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getLists: (userId) => dispatch(getLists(userId)),
+        getLists: (userId, queryParameters) => dispatch(getLists(userId, queryParameters)),
         unhidePopup: () => dispatch(showPopup()), 
         setPopupType: popupType => dispatch(setPopupType(popupType)),
         setPopupText: popupText => dispatch(setPopupText(popupText)),
         addNewList: listData => dispatch(addNewList(listData)),
         setInputEntered: () => dispatch(setInputEntered()),
-        startAddNewList: () => dispatch(setAddNewListStateSuccess())
+        startAddNewList: () => dispatch(setAddNewListStateSuccess()),
+        toggleActiveProject: projectData => dispatch(toggleActiveProject(projectData))
     }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Private);
-
-/*<iframe 
-            className = "Iframe"
-            src="https://docs.google.com/spreadsheets/d/1rBCC95aCAgW77yevOIUJOJuoPvSRsA3G2jBGj_C5Ldo/edit?usp=sharing&chrome=true">
-
-            </iframe>*/

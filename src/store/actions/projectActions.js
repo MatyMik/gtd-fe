@@ -216,3 +216,104 @@ export const setNextActionsToNullEvent = () => {
 export const setNextActionsToNull = () => {
     return dispatch => dispatch(setNextActionsToNull);
 }
+
+export const deleteProjectStart = () => {
+    return {
+        type: actionTypes.DELETE_PROJECT_START
+    }
+}
+
+export const deleteProjectSuccess = lists => {
+    return {
+        type: actionTypes.DELETE_PROJECT_SUCCESS,
+        lists
+    }
+}
+
+export const deleteProjectFailed = error => {
+    return {
+        type: actionTypes.DELETE_PROJECT_FAILED,
+        error
+    }
+}
+
+export const deleteProject = (deleteData) => {
+    return dispatch => {
+        dispatch(deleteProjectStart())
+        axios.post("/deleteproject", deleteData)
+        .then(response => {
+            const lists = response.data.lists
+            dispatch(deleteProjectSuccess(lists))
+        })
+        .catch(error => dispatch(deleteProjectFailed(error)))
+    }
+}
+
+export const toggleActiveProjectSuccess = (lists) => {
+    return {
+        type: actionTypes.ACTIVATE_PROJECT_SUCCESS,
+        lists
+    }
+}
+
+export const toggleActiveProjectFailed = error => {
+    return { 
+        type: actionTypes.ACTIVATE_PROJECT_FAILED, 
+        error
+    }
+}
+
+export const toggleActiveProject = projectData => {
+    return dispatch => {
+        axios.post("/toggleactiveproject", projectData)
+        .then(response => {
+            const lists = response.data.lists
+            dispatch(toggleActiveProjectSuccess(lists))
+        })
+        .catch(error => {dispatch(toggleActiveProjectFailed(error))})
+    }
+}
+
+export const deleteNextActionStart = () => {
+    return {
+        type: actionTypes.DELETE_NEXT_ACTION_START
+    }
+}
+
+export const deleteNextActionSuccess = nextActions => {
+    return {
+        type: actionTypes.DELETE_NEXT_ACTION_SUCCESS,
+        nextActions: nextActions
+    }
+}
+
+export const deleteNextActionAllSuccess = nextActions => {
+    return {
+        type: actionTypes.DELETE_NEXT_ACTION_ALL_SUCCESS,
+        nextActions: nextActions
+    }
+}
+
+export const deleteNextActionFailed = error => {
+    return {
+        type: actionTypes.DELETE_NEXT_ACTION_FAILED,
+        error
+    }
+}
+
+export const deleteNextAction = (nextActionId, userId, projectId) => {
+    return dispatch => {
+        dispatch(deleteNextActionStart())
+        axios.post("/deletenextaction", {nextActionId, userId, projectId})
+        .then(res => {
+            const nextActions = res.data.nextActions
+            console.log(userId===undefined, projectId)
+            if(projectId ===undefined){
+                dispatch(deleteNextActionAllSuccess(nextActions))
+            } else {
+                dispatch(deleteNextActionSuccess(nextActions))
+            }
+        })
+        .catch(err =>dispatch(deleteNextActionFailed(err)))
+    }
+}
