@@ -10,6 +10,8 @@ import ProjectDetails from "../ProjectDetails/ProjectDetails";
 import EditNextAction from "../EditNextAction/EditNextAction";
 import Logout from "../Logout/Logout";
 import NextActions from "../NextActions/NextActions";
+import MyFrame from "../MyFrame/MyFrame";
+import Work from "../Work/Work";
 
 const ApplicationContainer = props => {
     return (
@@ -27,6 +29,8 @@ const ApplicationContainer = props => {
                 <Route path = "/addnextaction/:projectId" component = {EditNextAction}/>
                 <Route path = "/nextactions" component = {NextActions}/>
                 <Route path = "/logout" component = {Logout}/>
+                <Route path = "/myframe" component = {MyFrame}/>
+                <Route path = "/work" component = {Work}/>
                 <Route exact path="/" component={Private}/>
                 
             </Switch>

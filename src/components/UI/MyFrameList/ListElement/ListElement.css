@@ -1,0 +1,19 @@
+.MyFrameTaskNumber{
+    display: inline-block;
+    text-align: center;
+    background-color:rgba(var(--gtd-orange),0.1);
+    border-bottom: 2px solid rgba(var(--gtd-orange),1);
+}
+
+.MyFrameTaskName {
+    display: inline-block;
+    text-align: left;
+}
+
+.ListElement{
+    width: 70%;
+    
+    margin: 2px auto;
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+}

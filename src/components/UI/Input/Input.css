@@ -15,7 +15,7 @@
 }
 
 
-input{
+.Input{
     border: none;
     border-bottom: 2px solid rgba(var(--gtd-orange),1);
     margin:auto;
@@ -23,7 +23,7 @@ input{
     height: 1.5rem;
 }
 
-input:focus{
+.Input:focus{
     outline:transparent;
 }
 

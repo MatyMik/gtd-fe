@@ -1,0 +1,27 @@
+.TaskItem{
+    border-left: 1px solid rgba(var(--gtd-orange),0.5);
+    background-color: rgba(var(--gtd-orange),0.1)
+}
+
+.Task{
+    display: grid;
+    grid-template-columns: var(--task-columns);
+    border-left: 3px solid rgb(var(--gtd-orange));
+    border-right: 3px solid rgb(var(--gtd-orange));
+    border-bottom: 1px solid rgba(var(--gtd-orange),0.5);
+}
+
+.Linkify{
+    word-wrap: break-word;
+}
+
+.DeleteTask{
+    height:1rem;
+    align-self:center;
+}
+
+.DeleteIcon{
+    display: grid;
+    align-content: center;
+    height: 100%;
+}

@@ -1,0 +1,6 @@
+.MyFrameListHeader{
+    margin:auto;
+    width:80%;
+    background-color: rgba(var(--gtd-orange),0.5);
+    text-align:center;
+}

@@ -4,12 +4,14 @@ import thunk from "redux-thunk"
 import errorReducer from "./reducers/errorReducer";
 import listAndProjectReducer from "./reducers/listAndProjectReducer";
 import popupReducer from "./reducers/poupReducer"
+import workReducer from "./reducers/workReducer";
 
 const rootStore = combineReducers({
     auth: authReducer,
     error: errorReducer,
     listAndProject: listAndProjectReducer,
-    popup: popupReducer
+    popup: popupReducer,
+    work: workReducer
 
 })
 

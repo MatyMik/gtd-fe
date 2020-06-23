@@ -2,11 +2,12 @@
   --basic-color: 14, 164, 175;
   --gtd-black:50,50,50;
   --gtd-orange: 255, 100, 0;
-  
+  --task-columns: 2fr 3fr 3fr 1fr 1.3fr 2fr 0.5fr;
 }
 
 html {
   height:100%;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 body {

@@ -6,3 +6,6 @@ export {addNewProject, setAddNewProjectStateSuccess, getProject,
 setNextActionsToNull, deleteProject, toggleActiveProject, deleteNextAction} from "./projectActions"
 
 export {getLists, addNewList, setAddNewListStateSuccess} from "./listActions"
+
+export {getTopics, topicDelete, topicAdd, topicUpdate, 
+taskDelete, taskAdd, taskUpdate} from "./workActions"
