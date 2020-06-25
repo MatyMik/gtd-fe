@@ -5,13 +5,18 @@ import Filters from "../Filters/Filters";
 import FilterDeleter from "../UI/FilterDeleter/FilterDeleter";
 
 const privatePageMenu = props => {
-    const activeWeekFilterDeleter = props.activeWeekFilterActivated ? (
-        <FilterDeleter clicked = {props.activeWeekFilterDeleteHandler}
-        content = "Active week filter"/>
-        ) : null;
     return (
         <div className = "PrivatePageMenu">
-            <Filters 
+            <div className = "AddNewListItem" onClick = { props.addNewListClicked}> Add new List</div>
+            <div className = "ActiveFilter" onClick = { props.thisWeekFilter}> {props.activeWeekFilterActivated ? "Show All" : "Only Show Active"} </div>
+
+        </div>
+    )
+}
+
+export default privatePageMenu;
+
+/*            <Filters 
             thisWeekFilter={props.thisWeekFilter}
             filterMenuOpen = { props.filterMenuOpen}
             filterMenuOpenHandler = { props.filterMenuOpenHandler}
@@ -21,10 +26,4 @@ const privatePageMenu = props => {
             menuOpen = {props.menuOpen}
             clicked = {props.clicked}
             addNewListClicked = { props.addNewListClicked}/>
-            {activeWeekFilterDeleter}
-            
-        </div>
-    )
-}
-
-export default privatePageMenu;
+            */

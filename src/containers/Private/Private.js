@@ -13,8 +13,7 @@ const Private = memo(props => {
 
     const [lists, setLists] = useState([])
     const [newListAdded, setNewListAdded] = useState(true);
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [activeWeekFilter, setActiveWeekFilter] = useState(!localStorage.getItem("activeWeekFilter")==="false");
+    const [activeWeekFilter, setActiveWeekFilter] = useState(!localStorage.getItem("activeWeekFilter")===false);
     const [filterMenuOpen, setFilterMenuOpen] = useState(false)
 
     useEffect(()=>{
@@ -60,19 +59,13 @@ const Private = memo(props => {
         props.setPopupText("List Name")
         props.startAddNewList()
         props.unhidePopup()
-        setMenuOpen(false)
         setNewListAdded(true);
     }
     const activeWeekFilterHandler = () => {
-        setActiveWeekFilter(true)
-        setFilterMenuOpen(false)
-        localStorage.setItem("activeWeekFilter", true)
+        setActiveWeekFilter(!activeWeekFilter)
+        localStorage.setItem("activeWeekFilter", !activeWeekFilter)
     }
 
-    const activeWeekFilterDeleteHandler = () => {
-        setActiveWeekFilter(false)
-        localStorage.setItem("activeWeekFilter", false)
-    }
 
 
     const filterMenuOpenHandler = () => {
@@ -80,7 +73,7 @@ const Private = memo(props => {
     }
     
     return(
-        <div>
+        <div className="Private">
                  {listsMapped}     
 
             <SideMenu
@@ -88,9 +81,6 @@ const Private = memo(props => {
             filterMenuOpen = {filterMenuOpen}
             thisWeekFilter = {() => activeWeekFilterHandler()} 
             activeWeekFilterActivated = {activeWeekFilter}
-            menuOpen = {menuOpen}
-            clicked = {() =>setMenuOpen(!menuOpen)}
-            activeWeekFilterDeleteHandler = {activeWeekFilterDeleteHandler}
             addNewListClicked = { () => addNewListHandler()}/>
         </div>
     )

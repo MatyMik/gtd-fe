@@ -78,17 +78,18 @@ const List = memo(props => {
     return(
         <div className = "ListContainer">
             <div className = "ListHeader">
-                <div className = "ListHeaderAdditional"  onClick={()=>openProjectListHandler()}>
-                    {showProjects ? "Hide Projects" :"Show Projects"}
-                </div>
                 <div className = "ListName">
                         {props.title}
                 </div>
+                <div className = "ListHeaderAdditional"  onClick={()=>openProjectListHandler()}>
+                    {showProjects ? "Hide Projects" :"Show Projects"}
+                </div>
+                
                 <div className = "AddProject"  onClick= { () => showProjectNameInput()}>
                     Add Project
                 </div>
                 
-                <div className = "ListHeaderAdditional">View Details</div>
+                <div className = "ListHeaderAdditional"></div>
                 
             </div>
             {projectList}
