@@ -58,3 +58,7 @@
     display:grid;
     align-content: left;
 }
+
+.DeleteTask{
+    color:rgba(var(--gtd-orange))
+}

@@ -30,6 +30,12 @@ const modal = props => {
         <Fragment>
             <Backdrop clicked = {props.clikckBackdrop}/>
             <div className = "Modal">
+                <div className ="closeModalButtonContainer">
+                    <div className = "closeModalButton"
+                    onClick = {props.clikckBackdrop}
+                    >x</div>
+                </div>
+                
                 {props.message}
                 {inputPart}
                 <Button btnClass = 'AuthButton'

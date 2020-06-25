@@ -12,3 +12,13 @@
     background-color: white;
     
 }
+
+.closeModalButtonContainer{
+    position: relative;
+}
+.closeModalButton{
+    position: absolute;
+    top:-20px;
+    right:10px;
+    cursor: pointer;
+}

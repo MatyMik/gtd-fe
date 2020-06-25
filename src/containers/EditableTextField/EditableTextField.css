@@ -7,6 +7,10 @@
     height:1.25rem;
 }
 
+.Output:hover{
+    cursor: url("https://imageog.flaticon.com/icons/png/512/61/61456.png"), auto;
+}
+
 .InputTag{
     width:100%;
     background-color: rgba(var(--gtd-orange),0.1);
