@@ -11,7 +11,7 @@ const List = memo(props => {
  
     const isProjectsOpen = JSON.parse(localStorage.getItem("projectOpen"))
     let startingProjectOpen = false;
-    if(isProjectsOpen.listId === props.listId){
+    if(isProjectsOpen && isProjectsOpen.listId === props.listId){
         startingProjectOpen = isProjectsOpen.open
     }
     const [showProjects, setShowProjects] = useState(startingProjectOpen);

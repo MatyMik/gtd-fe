@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import "./Work.css";
 import Topic from "../../components/Topic/Topic";
 import {getTopics, topicDelete, topicAdd, topicUpdate, taskDelete, taskAdd, taskUpdate} from "../../store/actions"
@@ -21,6 +21,10 @@ const Work = props => {
         props.addTask(taskData)
     }
 
+    const updateTopicTitle = (topicId, title) => {
+        const topicData = {topicId, title, userId: props.userId}
+        props.updateTopic(topicData)
+    }
     const updateTask = taskId => {
         props.updateTask(taskId)
     }
@@ -34,6 +38,7 @@ const Work = props => {
         updateTask = {updateTask}
         userId = {props.userId}
         deleteTopic = {props.deleteTopic}
+        updateTopic = {updateTopicTitle}
         />))
     return ( 
         <div className = "Work">

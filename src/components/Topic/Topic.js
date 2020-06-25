@@ -24,7 +24,7 @@ const Topic = props => {
             <div className = "TopicTitleContainer">
             <EditableTextField 
                 className ="" 
-                inputTagLeft = {props.inputTagLeft}
+                inputTagLeft = {() => props.updateTopic}
                 divClicked = {props.divClicked}
                 outputCssClass = "TopicTitle"
                 inputCssClass = "TopicTitleInput"

@@ -1,7 +1,6 @@
 import React, {Fragment, useState, useEffect} from "react";
 import "./Task.css";
 import Linkify from 'react-linkify';
-import {taskUpdate, taskDelete} from "../../store/actions";
 import EditableTextField from "../../containers/EditableTextField/EditableTextField"
 
 const Task = props => {
