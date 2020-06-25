@@ -20,14 +20,20 @@ const Work = props => {
     const addTaskHandler = taskData => {
         props.addTask(taskData)
     }
-    
+
+    const updateTask = taskId => {
+        props.updateTask(taskId)
+    }
     const topicsMapped = props.topics.map((topic, index) => (
         <Topic 
-        title = {topic.title} 
+        title = {topic._doc.title} 
         tasks={topic.tasks} 
         key = {index}
-        topicId={topic._id}
+        topicId={topic._doc._id}
         addNewTask = {addTaskHandler}
+        updateTask = {updateTask}
+        userId = {props.userId}
+        deleteTopic = {props.deleteTopic}
         />))
     return ( 
         <div className = "Work">

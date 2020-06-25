@@ -1,3 +1,11 @@
+.TopicTitleContainer{
+    display: grid;
+    height: 2rem;
+    grid-template-columns: 10fr 1fr;
+    align-content: center;
+    justify-content: center;
+}
+
 .TopicHeader{
     background-color: rgba(var(--gtd-orange),0.5);
     display:grid;
@@ -9,7 +17,7 @@
 
 .TopicTitle{
     text-align: left;
-    margin: 0 0 1rem 1rem;
+    
     color: rgba(var(--gtd-orange),1);
     font-weight: bold;
 }

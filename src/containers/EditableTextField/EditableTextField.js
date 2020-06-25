@@ -7,29 +7,31 @@ const EditableTextField = props => {
     const [textValue, setTextValue] = useState(props.textValue);
     const [editMode, setEditMode] = useState(props.editMode || false)
 
-    const inputTagLeft = ()=>{
+    const inputTagLeft = event=>{
         setEditMode(false);
-        props.inputTagLeft ? props.inputTagLeft() : null
+        if(props.inputTagLeft) props.inputTagLeft(event)
     }
 
     const divClicked = ()=>{
         setEditMode(true)
-        props.divClicked ? props.divClicked() : null
+        if(props.divClicked) props.divClicked()
     }
 
     const elementToRender = editMode ? 
     (
         <InputTag 
-            inputTagLeft = {() => inputTagLeft()} 
+            inputTagLeft = {(event) => inputTagLeft(event)} 
             value = {textValue} 
             changed={event => setTextValue(event.target.value)}
             inputCssClass = {props.inputCssClass}
         />
     ): (
-        <OutputDiv 
+        <OutputDiv
+            linkify = {props.linkify}  
             text = {textValue} 
             divClicked = {() => divClicked()}
             outputCssClass = {props.outputCssClass}
+            options = {props.options}
         />
         )
     return (

@@ -7,7 +7,7 @@ const InputTag = props => {
     value={props.value} 
     onBlur = {props.inputTagLeft} 
     autoFocus 
-    onChange = {props.changed}/>
+    onChange = {event =>props.changed(event)}/>
 }
 
 export default InputTag;

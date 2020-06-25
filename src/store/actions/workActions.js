@@ -1,6 +1,5 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axiosInstance";
-import { toggleActiveProjectSuccess } from "./projectActions";
 
 
 // Get Topics
@@ -166,7 +165,10 @@ export const taskAdd = taskData => {
     return dispatch => {
         dispatch(taskAddStart())
         axios.post("/addtask", taskData)
-        .then(res => dispatch(taskAddSuccess()))
+        .then(res => {
+            console.log(res.data)
+            dispatch(taskAddSuccess(res.data.topics))
+        })
         .catch(error => dispatch(taskAddFailed(error)))
     }
 }
