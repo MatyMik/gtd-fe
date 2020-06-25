@@ -9,7 +9,12 @@ import * as popupTypes from "../../utils/popupTypes";
 
 const List = memo(props => {
  
-    const [showProjects, setShowProjects] = useState(false);
+    const isProjectsOpen = JSON.parse(localStorage.getItem("projectOpen"))
+    let startingProjectOpen = false;
+    if(isProjectsOpen.listId === props.listId){
+        startingProjectOpen = isProjectsOpen.open
+    }
+    const [showProjects, setShowProjects] = useState(startingProjectOpen);
     const [addNewProject, setAddNewProject] = useState(false);
 
 
@@ -51,6 +56,8 @@ const List = memo(props => {
     //const input = showInput ? <input type='text' className='ProjectNameInput'/> : null;
     
     const openProjectListHandler = () => {
+        const projectOpenData = { listId: props.listId, open: !showProjects}
+        localStorage.setItem("projectOpen", JSON.stringify(projectOpenData))
         setShowProjects(!showProjects)
     }
 
@@ -72,7 +79,7 @@ const List = memo(props => {
         <div className = "ListContainer">
             <div className = "ListHeader">
                 <div className = "ListHeaderAdditional"  onClick={()=>openProjectListHandler()}>
-                    Show Projects
+                    {showProjects ? "Hide Projects" :"Show Projects"}
                 </div>
                 <div className = "ListName">
                         {props.title}

@@ -1,7 +1,7 @@
 .TaskItem{
     border-left: 1px solid rgba(var(--gtd-orange),0.5);
     background-color: rgba(var(--gtd-orange),0.1);
-    word-break: break-all;
+    word-break: break-word;
     padding: 2px;
 }
 
