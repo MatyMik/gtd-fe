@@ -7,5 +7,9 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import rootReducer from "./store/store";
 
+if (document.visibilityState !== "visible") {
+    console.log("Now not seeing")
+  } 
+
 ReactDOM.render( <Provider store = {rootReducer}><BrowserRouter> <App /> </BrowserRouter></Provider>, document.getElementById('root'));
 registerServiceWorker();

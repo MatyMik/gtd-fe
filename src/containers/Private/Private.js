@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from "react";
 import "./Private.css";
 import List from "../../components/List/List";
-import SideMenu from "../../components/PrivatePageMenu/PrivatePageMenu"
+import SideMenu from "../../components/PageMenu/PageMenu"
 import {getLists, setPopupText, setPopupType, showPopup, 
     addNewList, setInputEntered, 
     setAddNewListStateSuccess, toggleActiveProject} from "../../store/actions"
@@ -14,7 +14,6 @@ const Private = memo(props => {
     const [lists, setLists] = useState([])
     const [newListAdded, setNewListAdded] = useState(true);
     const [activeWeekFilter, setActiveWeekFilter] = useState(!localStorage.getItem("activeWeekFilter")===false);
-    const [filterMenuOpen, setFilterMenuOpen] = useState(false)
 
     useEffect(()=>{
         const userId = props.userId;
@@ -67,21 +66,17 @@ const Private = memo(props => {
     }
 
 
-
-    const filterMenuOpenHandler = () => {
-        setFilterMenuOpen(!filterMenuOpen)
-    }
     
     return(
         <div className="Private">
                  {listsMapped}     
 
             <SideMenu
-            filterMenuOpenHandler = {() => filterMenuOpenHandler()}
-            filterMenuOpen = {filterMenuOpen}
-            thisWeekFilter = {() => activeWeekFilterHandler()} 
-            activeWeekFilterActivated = {activeWeekFilter}
-            addNewListClicked = { () => addNewListHandler()}/>
+            filterText = {activeWeekFilter ? "Show All Projects" : "Only Show Active Projects"}
+            filterHandler = {() => activeWeekFilterHandler()} 
+            filterActive = {activeWeekFilter}
+            addLabel = "Add New List"
+            addNewClicked = { () => addNewListHandler()}/>
         </div>
     )
 })

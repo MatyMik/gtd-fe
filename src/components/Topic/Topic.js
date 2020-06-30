@@ -7,7 +7,13 @@ const Topic = props => {
     const header = ["Task name", "Description", "JIRA link", "With", "Asignee", "Due date"]
     const headerMapped = header.map((item, index) => <div className = "HeaderItem" key={index}>{item}</div>)
     const tasksMapped = props.tasks.map((task, index) => {
-        return <Task {...task} key={index} updateTask={props.updateTask} userId={props.userId} topicId={props.topicId}/>
+        return <Task 
+        {...task} 
+        key={index} 
+        updateTask={props.updateTask} 
+        userId={props.userId} 
+        archiveFilter = {props.archiveFilter}
+        topicId={props.topicId}/>
     })
 
     const {userId, topicId} = props

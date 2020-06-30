@@ -5,3 +5,12 @@
     background-color: rgba(255,255,255,0.75);
     z-index:100;
 }
+
+.ListCloseBackdrop{
+    position:fixed;
+    top:0%;
+    right:0%;
+    height: 100vh;
+    width:100vw;
+    z-index:2;
+}

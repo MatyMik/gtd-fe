@@ -8,7 +8,7 @@
 }
 
 .Output:hover{
-    cursor: url("https://imageog.flaticon.com/icons/png/512/61/61456.png"), auto;
+    cursor: url("../../images/editSmall.svg") 0 16, auto;
 }
 
 .InputTag{

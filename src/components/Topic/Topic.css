@@ -17,7 +17,7 @@
 
 .TopicTitle{
     text-align: left;
-    
+    cursor: url("../../images/editSmall.svg") 0 32, auto;
     color: rgba(var(--gtd-orange),1);
     font-weight: bold;
 }
@@ -25,13 +25,14 @@
 .TopicTitleInput:focus{
     width: 100%;
     text-align: left;
-    margin: 0 0 1rem 1rem;
+    display: inline-block;
+    margin: 0 0 ;
     color: rgba(var(--gtd-orange),1);
     font-size: 1rem;
     font-weight: bold;
     outline:none;
-    border:none;
-    padding: none;
+    border:0;
+    padding: 0;
 }
 
 .HeaderItem{

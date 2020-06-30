@@ -17,6 +17,12 @@ const Auth = props => {
             labelText: "Email",
             pages: ["login","signup"]
         },
+        username: {
+            type: "text",
+            name: "username",
+            labelText: "Username",
+            pages: ["signup"]
+        },
         password: {
             type: "password",
             name: "password",
@@ -34,6 +40,7 @@ const Auth = props => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [username, setUsername] = useState("");
     const [loaded, setLoaded] = useState(false)
 
     const history = useHistory();
@@ -46,10 +53,10 @@ const Auth = props => {
     },[])
     useEffect(()=>{
         //the redirects after login and after signup
-        if(loaded === true && props.loading === false && props.isAuthenticated){
-            if(page==='login'){
+        if(loaded === true && props.loading === false){
+            if(page==='login'  && props.isAuthenticated){
                 history.push("/")
-            } else {
+            } else if(page==='signup') {
                 history.push("/auth/login")
             }
         }
@@ -69,14 +76,17 @@ const Auth = props => {
             setPassword(inputValue);
         } else if (inputType==="confirmPassword") {
             setConfirmPassword(inputValue)
-        } else {
+        } else if (inputType==="username"){
+            setUsername(inputValue)
+        }
+        else {
             return false;
         }
     }
 
     const onFormSubmitted = (event) => {
         event.preventDefault();
-        const userData = createFormData(email, password, confirmPassword, page);
+        const userData = createFormData(email, password, confirmPassword, username, page);
         if (page ==='login'){
             props.onLogin(userData)
         } else {

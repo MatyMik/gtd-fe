@@ -1,0 +1,36 @@
+.AddContentElementMenuContainer{
+
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+}
+
+.AddMyFrameItemSVG{
+    height: 1.5rem;
+}
+
+.AddMyFrameItem{
+    color:rgba(var(--gtd-black),1);
+    font-weight: bold;
+    text-align: left;
+    padding-left: 0.5rem;
+    height: 1.5rem;
+    display:grid;
+    align-content: center;
+}
+
+.AddMyFrameItem:hover{
+    color:rgba(var(--gtd-orange),1);
+    cursor: pointer;
+}
+
+.AddContentElementMenuContainerPoitioner{
+    position: relative;
+}
+
+.AddContentItemsContainer{
+    position: absolute;
+    padding-right: 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(var(--gtd-orange),1);
+    z-index: 10;
+}

@@ -9,3 +9,5 @@ export {getLists, addNewList, setAddNewListStateSuccess} from "./listActions"
 
 export {getTopics, topicDelete, topicAdd, topicUpdate, 
 taskDelete, taskAdd, taskUpdate} from "./workActions"
+
+export {getIteration, addIteration, addDay, getDay} from "./myFrameActions"

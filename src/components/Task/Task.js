@@ -4,7 +4,7 @@ import Linkify from 'react-linkify';
 import EditableTextField from "../../containers/EditableTextField/EditableTextField"
 
 const Task = props => {
-
+    console.log(props)
     const taskId = props._id;
     const {userId, topicId} = props;
 
@@ -20,6 +20,7 @@ const Task = props => {
     const [asignee, setAsignee] = useState(props.asignee || "");
     const [deadline, setDeadline] = useState(props.deadline || "");
     const [archived, setArchived] = useState(props.archived || false)
+    const [doneTooltipOpen, setDoneTooltipOpen] = useState(false)
 
     useEffect(()=> {  
         if(archived){
@@ -76,84 +77,104 @@ const Task = props => {
         updateTask()
     }
 
-
-    const taskElements = done ? (
-        <Fragment>
-        <div className="TaskName TaskItem">
-            {taskName}
-        </div>
-        <div className="TaskDexcription TaskItem">
-  
-        </div>
-        <div className="TaskLink TaskItem">
-            
-        </div>
-        <div className="TaskWith TaskItem">
-
-        </div>
-        <div className="DeleteIcon TaskItem">
-            <img className="DeleteTask" alt = "" src = {require("../../images/trash.svg")} onClick ={props.deleteTask}/>
-        </div>
-        <div className="TaskArchive TaskItem" onClick = {() => archiveTask()}>
-            Archive
-        </div>
-        </Fragment>
-        ) : (
-        <Fragment>
-            <EditableTextField 
-            textValue ={taskName} 
-            outputCssClass = "TaskName TaskItem"
-            inputCssClass = "TaskInput"
-            inputTagLeft = {event => taskNameUpdated(event)}
-            />
-
-            <EditableTextField 
-            textValue ={description} 
-            outputCssClass = "TaskDexcription TaskItem"
-            inputCssClass = "TaskInput"
-            inputTagLeft = {event => descriptionUpdated(event)}
-            />
-
-            <Linkify><EditableTextField 
-            linkify = {true}
-            options = {linkifyOptions}
-            textValue ={link} 
-            outputCssClass = "Linkify TaskItem"
-            inputCssClass = "TaskInput"
-            inputTagLeft = {event => linkUpdated(event)}
-            /></Linkify>
-
-            <EditableTextField 
-            textValue ={doWith} 
-            outputCssClass = "TaskWith TaskItem"
-            inputCssClass = "TaskInput"
-            inputTagLeft = {event => doWithUpdated(event)}
-            />
-
-            <EditableTextField 
-            textValue ={asignee} 
-            outputCssClass = "TaskResponsible TaskItem"
-            inputCssClass = "TaskInput"
-            inputTagLeft = {event => asigneeUpdated(event)}
-            />
-            <EditableTextField 
-            textValue ={deadline} 
-            outputCssClass = "TaskDeadline TaskItem"
-            inputCssClass = "TaskInput"
-            inputTagLeft = {event => deadlineUpdated(event)}
-            />
-            </Fragment>
-    )
-    if (archived) {
-        return null;
+    const taskDone = () => {
+        setDone(!done)
+        setDoneTooltipOpen(true)
     }
-    return (
-        <div className="Task">
-            {taskElements}
-            <div className="TaskDeadline TaskItem">
-                <input type="checkbox" onChange={() => setDone(!done)}/>
+    const closeDoneTooltip = () => {
+        setDoneTooltipOpen(false)
+    }
+
+    const afterDoneTooltip = done && doneTooltipOpen ? (
+        <div className = "DoneTooltip">
+            
+            <div className="TaskArchive TaskItem" onClick = {() => archiveTask()}>
+                Archive
             </div>
+            <img className="DeleteTask" alt = "" src = {require("../../images/trash.svg")} onClick ={props.deleteTask}/>
+            <div onClick = {() => closeDoneTooltip()}>x</div>
+        </div>
+        ) :null;
+
+
+
+    const taskElement = <Fragment>
+    <EditableTextField 
+    textValue ={taskName} 
+    outputCssClass = "TaskName TaskItem"
+    inputCssClass = "TaskInput"
+    inputTagLeft = {event => taskNameUpdated(event)}
+    />
+    <EditableTextField 
+    textValue ={description} 
+    outputCssClass = "TaskDexcription TaskItem"
+    inputCssClass = "TaskInput"
+    inputTagLeft = {event => descriptionUpdated(event)}
+    />
+
+    <Linkify><EditableTextField 
+    linkify = {true}
+    options = {linkifyOptions}
+    textValue ={link} 
+    outputCssClass = "Linkify TaskItem"
+    inputCssClass = "TaskInput"
+    inputTagLeft = {event => linkUpdated(event)}
+    /></Linkify>
+
+    <EditableTextField 
+    textValue ={doWith} 
+    outputCssClass = "TaskWith TaskItem"
+    inputCssClass = "TaskInput"
+    inputTagLeft = {event => doWithUpdated(event)}
+    />
+
+    <EditableTextField 
+    textValue ={asignee} 
+    outputCssClass = "TaskResponsible TaskItem"
+    inputCssClass = "TaskInput"
+    inputTagLeft = {event => asigneeUpdated(event)}
+    />
+    <EditableTextField 
+    textValue ={deadline} 
+    outputCssClass = "TaskDeadline TaskItem"
+    inputCssClass = "TaskInput"
+    inputTagLeft = {event => deadlineUpdated(event)}
+    />
     
+    <div className="TaskDone TaskItem">
+        <input type="checkbox" onChange={() => taskDone()} checked={done}/>
+    </div>
+    </Fragment>
+
+        const archivedtaskElement = <Fragment>
+        <div className = "TaskName ArchivedTaskItem"
+        > {taskName} </div>
+        <div className = "TaskDexcription ArchivedTaskItem"
+        > {description} </div>
+        <div className = "Linkify ArchivedTaskItem"
+        > <Linkify>{link}</Linkify> </div>
+        <div className = "TaskWith ArchivedTaskItem"
+        > {doWith} </div>
+        <div className = "TaskResponsible ArchivedTaskItem"
+        > {asignee} </div>
+        <div className = "TaskDeadline ArchivedTaskItem"
+        > {deadline} </div>
+        <img className="DeleteTask" alt = "" src = {require("../../images/trash.svg")} onClick ={props.deleteTask}/>
+        </Fragment>
+    let cssClass = "Task"
+    if(props.archiveFilter && archived){
+        return null;
+    } 
+    if (!props.archiveFilter && archived){
+        cssClass = "TaskArchived"
+
+    }
+
+    const taskToRender = archived ? archivedtaskElement : taskElement
+    return (
+        <div className={cssClass}>
+            {taskToRender}
+            {afterDoneTooltip}
         </div>
     )
 }

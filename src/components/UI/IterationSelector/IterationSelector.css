@@ -1,0 +1,100 @@
+.LeftArrow{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: auto;
+    background-color: rgba(var(--gtd-orange),0.5);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+.DownArrow{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: auto;
+    background-color: rgba(var(--gtd-orange),0.5);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.RightArrow{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: auto;
+    background-color: rgba(var(--gtd-orange),0.5);
+    clip-path: polygon(0 0, 0 100%, 100% 50%);
+}
+
+.IterationSelectorContainer{
+    display: grid;
+    width: 30%;
+    height: 3rem;
+    margin: 1rem auto 0;
+    grid-template-columns: 1fr 4fr 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.IterationDate{
+    border: 1px solid rgba(var(--gtd-orange),1);
+    border-radius: 5px;
+    height: 2rem;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    align-items: center;
+    position: relative;
+}
+
+.AddIteration{
+    height:1.5rem;
+    margin: auto;
+}
+.ListOfSelectableItems{
+    position:absolute;
+}
+
+.AddMenu{
+    position:absolute;
+    display: grid;
+    width:120%;
+    grid-template-columns: 4fr 2fr 0.5fr;
+    top:-1.3rem;
+    right:-5rem;
+    background-color: white;
+    border: 1px solid rgba(var(--gtd-orange),1);
+    border-radius: 5px;
+    overflow: hidden;
+    height: 1.5rem;
+}
+
+.AddItemButton{
+    display: grid;
+    align-items: center;
+    color: rgb(var(--gtd-orange));
+    font-weight: bold;
+}
+
+.AddItemButton span{
+    cursor: pointer;
+}
+
+.CloseMenuButton{
+    display: grid;
+    align-items: right;
+    justify-content: right;
+    margin-right:8px;
+    
+}
+
+.CloseMenuButton span{
+    cursor: pointer;
+}
+
+.ListOfSelectableItems{
+    position: absolute;
+    border: 1px solid rgba(var(--gtd-orange),1);
+    width:80%;
+    top:2rem;
+    border-radius: 5px;
+    right:10%;
+    background: white;
+    z-index: 10;
+}

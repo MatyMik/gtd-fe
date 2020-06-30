@@ -1,4 +1,4 @@
-export const createFormData = (email, password, confirmPassword, page) => {
+export const createFormData = (email, password, confirmPassword,username, page) => {
     if (page ==='login'){
         return {
             email, 
@@ -8,7 +8,8 @@ export const createFormData = (email, password, confirmPassword, page) => {
         return {
             email,
             password,
-            confirmPassword
+            confirmPassword,
+            username
         }
     }
 }

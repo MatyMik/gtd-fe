@@ -5,13 +5,15 @@ import errorReducer from "./reducers/errorReducer";
 import listAndProjectReducer from "./reducers/listAndProjectReducer";
 import popupReducer from "./reducers/poupReducer"
 import workReducer from "./reducers/workReducer";
+import myFrameReducer from "./reducers/myFrameReducer"
 
 const rootStore = combineReducers({
     auth: authReducer,
     error: errorReducer,
     listAndProject: listAndProjectReducer,
     popup: popupReducer,
-    work: workReducer
+    work: workReducer,
+    myFrame: myFrameReducer
 
 })
 

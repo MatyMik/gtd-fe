@@ -131,7 +131,6 @@ export const topicAdd = (topicData) => {
         axios.post("/addtopic", topicData)
         .then(response => {
             const topics = response.data.topics;
-            console.log(topics)
             dispatch(topicAddSuccess(topics))
         })
         .catch(error => dispatch(topicAddFailed(error)))

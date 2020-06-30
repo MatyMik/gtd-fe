@@ -1,0 +1,41 @@
+.PersonSelectorContainer{
+    width:70%;
+    margin: 2rem 15% ;
+
+    height:3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color:rgba(var(--gtd-black),0.3);
+    border-radius: 1rem;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.ActiveUser{
+    background-color:rgba(var(--gtd-black),0.3);
+    height:100%;
+    display:grid;
+    align-items:center;
+}
+
+.Sharing{
+    margin:1rem auto;
+    color: rgba(var(--gtd-black),1);
+    font-weight: bold;
+    cursor: pointer;
+    
+    width: 10%;
+    position: relative;
+    border: 1px solid rgba(var(--gtd-orange),1);
+    border-radius: 5px;
+    height: 2rem;
+}
+
+.SharingText{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 2fr 1fr;
+    height: 100%;
+
+}

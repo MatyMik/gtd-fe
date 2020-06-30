@@ -1,0 +1,8 @@
+.IterationListItem{
+    border-bottom: 1px solid rgba(var(--gtd-orange),1);
+    height: 1.5rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    cursor: pointer;
+}

@@ -1,0 +1,38 @@
+.Tick{
+    height:1rem;
+    margin: auto;
+}
+
+.EditableListItem{
+    font-size: 0.875rem;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    align-items: center;
+    width:100%;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(var(--gtd-orange),1);
+}
+
+.PersonalDataContainer{
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.EmailAddress{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.EditableListItemHeader{
+    font-size: 0.875rem;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    align-items: center;
+    width:100%;
+    border-bottom: 2px solid rgba(var(--gtd-orange),1); 
+    padding: 4px 0;
+}

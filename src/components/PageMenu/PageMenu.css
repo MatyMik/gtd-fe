@@ -2,7 +2,7 @@
     position: fixed;
     top:10px;
     left:25%;
-    width:57%;
+    width:50%;
     border-bottom: 3px double rgba(var(--gtd-orange),1);
     display: grid;
     grid-template-columns: 1fr 1fr;

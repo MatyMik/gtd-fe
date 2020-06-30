@@ -1,0 +1,14 @@
+.FilterMenu{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 60%;
+    margin: 1rem auto;
+    border-bottom: 3px double rgba(var(--gtd-orange),1);
+}
+
+.FilterMenuItems{
+    color: rgb(var(--gtd-orange));
+    display:grid;
+    align-items: center;
+    font-weight: bold;
+}
