@@ -1,0 +1,68 @@
+.TextField{
+    margin: 1rem auto;
+    width:80%;
+}
+
+.TextFieldTitle{
+    border-bottom: 1px solid rgba(var(--gtd-black),1);
+    height:1.125rem;
+    cursor: url("../../../images/editSmall.svg") 0 16, auto;
+}
+
+.TextFieldContent{
+    background: white;
+    border: 1px solid rgba(var(--gtd-orange),1);
+    border-radius: 5px;
+    width:90%;
+    margin: 1px auto;
+    min-height: 8rem;
+    word-break: break-all;
+    font-size: 1rem;
+}
+
+.TextFieldContent:hover{
+    cursor: url("../../../images/editSmall.svg") 0 16, auto;
+}
+
+.TextFieldContentInput{
+    text-align: center;
+    outline: none;
+}
+
+.TextFieldContentInput:focus,
+.TextFieldContentInput:active,
+.TextFieldContentInput{
+    text-align: center;
+    display:border-box;
+    padding:0;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid rgba(var(--gtd-orange),1);
+    border-radius: 5px;
+    min-height: 8rem;
+    width:90%;
+    justify-content: start;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin: 1px 0;
+    resize:none;
+    vertical-align: bottom
+}
+
+.TextFieldTitleInput:focus{
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid rgba(var(--gtd-black),1);
+    width:100%;
+    text-align: center;
+    
+    height: 1.125rem;
+    resize:none;
+    padding:0;
+    margin: 0;
+    font-family: inherit;
+    font-size: 1rem;
+    color: inherit;
+    vertical-align: bottom;
+}

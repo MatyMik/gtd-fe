@@ -1,19 +1,33 @@
-import React, {useState, useEffect, useRef, memo} from "react";
+import React, {useState, useEffect, Suspense} from "react";
 import "./MyFrame.css";
-import MyFrameList from "../../components/UI/MyFrameList/MyFrameList";
-import TextField from "../../components/UI/TextField/TextField";
+//import MyFrameList from "../../components/UI/MyFrameList/MyFrameList";
+//import TextField from "../../components/UI/TextField/TextField";
 import IterationSelector from "../../components/UI/IterationSelector/IterationSelector";
 import Sharing from "../../components/UI/SharingComponent/SharingComponent";
-import {getIteration, addIteration, addDay, getDay} from "../../store/actions";
+import {
+    getIteration, 
+    addIteration, 
+    addDay, 
+    getDay,
+    addListContainerToDay,
+    addListToContainer,
+    updateMyFrameListTitle,
+    addTextfieldToDay,
+    addTextfieldToContainer,
+    updateTextfield
+} from "../../store/actions";
 import FilterMenu from "../../components/UI/FilterMenu/FilterMenu"
 import {connect} from "react-redux";
 import {createDayIndex} from "./MyFrameHelpers"
-import MyFrameLists from "../../components/UI/MyFrameListsContainer/MyFrameListsContainer"
+//import MyFrameLists from "../../components/UI/MyFrameListsContainer/MyFrameListsContainer"
 import MyFrameContent from "../../components/MyFrameContentContainer/MyFrameContentContainer"
+import Spinner from "../../components/UI/Spinner/Spinner"
 
-const MyFrame = memo(props => {
+const MyFrame = props => {
 
-    const {userId, shareList, iteration} = props;
+    //console.log(props)
+
+    const {userId, shareList, iteration, contents, suggestionLists} = props;
 
     const [openSharingMenu, setOpenSharingMenu] = useState(false);
     const [showIterationSelector, setShowIterationSelector] = useState(true);
@@ -24,6 +38,8 @@ const MyFrame = memo(props => {
     const [nextDayToCreateStart, setNextDayToCreateStart] = useState(-1);
     const [dayId, setDayId] = useState(localStorage.getItem("dayId"));
     const [firstLoad, setFirstLoad] = useState(false)
+    const [listsToAdd, setListsToAdd] = useState(suggestionLists, suggestionLists.listsToAdd)
+    //const [currentContentLength, setCurrentContentLength] = useState(day && day.content.length)
     // dayId is
     // const dayIndex = iteration && iteration.dayList && iteration.daylist.length
     // const dayIdToStart = dayIndex && iteration.dayList[dayIndex].id
@@ -37,12 +53,10 @@ const MyFrame = memo(props => {
         console.log(event.target.children)
     }
 
-
-
     useEffect(()=>{
         if((localStorage.getItem("iterationId")!== iterationId && iterationId && !props.loading) ||
         (iterationId && !props.loading) || (!firstLoad && !props.loading)){
-
+            
             props.getIteration(userId, iterationId)
             setFirstLoad(true)
         } 
@@ -66,6 +80,8 @@ const MyFrame = memo(props => {
             } 
         }
     },[iteration, dayId])
+
+
     // if iteration list is empty, render that u need to add your first iteration
     // get the list of ppl u have shared your myframe with
     // get the last iteration --> get all data. populate day selector
@@ -105,133 +121,85 @@ const MyFrame = memo(props => {
         localStorage.setItem("dayId", dayId)
         setDayId(dayId); 
     }
-    const starterList = [{
-        title: "Törődés", 
-        tasks: [{
-            number:1,
-            title:"react",
-            done: false
-        }, {
-            title:"Angular", 
-            done: false
-        }]
-    },{
-        title: "Opcionális", 
-        tasks: [{number:1,
-            title:"Macska alom",
-            done: false
-        }, {number:2,
-            title:"Robotporszívó", 
-            done: false
-        }]
-    },{
-        title: "Törődés", 
-        tasks: [{
-            number:1,
-            title:"react",
-            done: false
-        }, {
-            title:"Angular", 
-            done: false
-        }]
-    },{
-        title: "Opcionális", 
-        tasks: [{number:1,
-            title:"Macska alom",
-            done: false
-        }, {number:2,
-            title:"Robotporszívó", 
-            done: false
-        }]
-    }]
 
-    const dayLists = [{lists: [{
-        title: "Törődés", 
-        tasks: [{
-            number:1,
-            title:"react",
-            done: false
-        }, {
-            title:"Angular", 
-            done: false
-        }]
-    },{
-        title: "Opcionális", 
-        tasks: [{number:1,
-            title:"Macska alom",
-            done: false
-        }, {number:2,
-            title:"Robotporszívó", 
-            done: false
-        }]
-    },{
-        title: "Törődés", 
-        tasks: [{
-            number:1,
-            title:"react",
-            done: false
-        }, {
-            title:"Angular", 
-            done: false
-        }]
-    },{
-        title: "Opcionális", 
-        tasks: [{number:1,
-            title:"Macska alom",
-            done: false
-        }, {number:2,
-            title:"Robotporszívó", 
-            done: false
-        }]
-    }]},
-    {
-        textfield:{title: "Hála", content: "Csenge"}
-    },
-    {
-        textfield:{title: "Hála", content: "Csenge"}
-    },{lists: [{
-        title: "Törődés", 
-        tasks: [{
-            number:1,
-            title:"react",
-            done: false
-        }, {
-            title:"Angular", 
-            done: false
-        }]
-    },{
-        title: "Opcionális", 
-        tasks: [{number:1,
-            title:"Macska alom",
-            done: false
-        }, {number:2,
-            title:"Robotporszívó", 
-            done: false
-        }]
-    },{
-        title: "Törődés", 
-        tasks: [{
-            number:1,
-            title:"react",
-            done: false
-        }, {
-            title:"Angular", 
-            done: false
-        }]
-    },{
-        title: "Opcionális", 
-        tasks: [{number:1,
-            title:"Macska alom",
-            done: false
-        }, {number:2,
-            title:"Robotporszívó", 
-            done: false
-        }]
-    }]}
-]
-    const textFields = [{title: "Hála", content: "Csenge"}, ]
-    console.log(props)
+    /*const updateDayContents = newItem => {
+        const currentDayContents = [...contents];
+        currentDayContents.push(newItem);
+        setDayContentItems(currentDayContents);
+        //send to backend
 
+    }*/
+    const addListHandler = () =>{
+        //what it needs=
+        // add an element to the day elements
+        const listData = {
+            userId,
+            dayId,
+            orderInContents:contents.length
+        }
+        //updateDayContents(listData)
+        props.addListContainerToDay(listData)
+        // send to BE to update day lists there
+    }
+
+    const addTextfieldHandler = (event,id) => {
+        const textfieldData = { 
+            type: "textfield",
+            content:"",
+            title: "New textfield",
+            dayId,
+            userId,
+            containerId:id
+        }
+        props.addTextfieldToContainer(textfieldData)
+    }
+
+    const addTextfieldContainerHandler = () => {
+        const textfieldContainerData = {
+            userId,
+            dayId,
+            orderInContents:contents.length
+        }
+        //console.log(textfieldContainerData)
+        props.addTextfieldToDay(textfieldContainerData)
+    }
+
+    const addListToListContainer = (title,dayListIndex, containerId) => {
+        // the index of the element in the day, and then the type(title) of the list --> immediately an api call to the BE to update the dayList
+        // need dayId, userId
+        const listData = {
+            userId,
+            dayId,
+            dayListIndex,
+            title,
+            containerId
+        }
+        //console.log(listData)
+        props.addListToContainer(listData)
+    }   
+
+    const editListTitleFinished = (event,id) => {
+        const listData = {
+            title: event.target.value, 
+            listId:id,
+            dayId
+        }
+        console.log(listData)
+        props.updateMyFrameListTitle(listData)
+    }
+
+    const updateTextfield = (title, content, textfieldId) => {
+        const textfieldData = {
+            textfieldId,
+            title,
+            content,
+            dayId
+        }
+
+        props.updateTextfield(textfieldData)
+    }
+
+    
     const iteratorText = props.iteration ? props.iteration.dateToShow || "No Iterations Yet" : "Loading..."
     const dayText = iteration && iteration.dayIds && iteration.dayIds.includes(dayId) && props.day ? props.day.daySelectorText ||  "Loading..." : "No Days Selected Yet"
     return (
@@ -280,10 +248,23 @@ const MyFrame = memo(props => {
                 openSharingMenuToggler = {() => setOpenSharingMenu(!openSharingMenu)}
                 showSharing = {showSharing}
                 />
-            <MyFrameContent dayLists = {[]} />
+            
+            <Suspense fallback={<Spinner/>} >
+                <MyFrameContent 
+                    dayLists = {contents} 
+                    dayId = {dayId}
+                    addTextfieldContainerHandler = {addTextfieldContainerHandler}
+                    addListHandler = {addListHandler}
+                    listTypesToAdd = {listsToAdd}
+                    addListToListContainer = {addListToListContainer}
+                    editListTitleFinished ={editListTitleFinished}
+                    addTextfieldHandler = {addTextfieldHandler}
+                    updateTextfield= {updateTextfield}
+                />
+            </Suspense>
         </div>
     )
-})
+}
 
 const mapStateToProps = state => {
     return {
@@ -293,8 +274,12 @@ const mapStateToProps = state => {
         iterationList: state.myFrame.iterationList, 
         dayList: state.myFrame.dayList,
         currentIteration: state.myFrame.currentIteration,
-        loading: state.myFrame.loading,
+        loadingIteration: state.myFrame.loadingIteration,
+        loadingDay: state.myFrame.loadingDay,
+        loadingContainer: state.myFrame.loadingContainer,
         day: state.myFrame.day,
+        contents: state.myFrame.contents,
+        suggestionLists: state.myFrame.suggestionLists,
     }
 }
 
@@ -304,6 +289,12 @@ const mapDispatchToProps = dispatch => {
         addIteration: iterationData => dispatch(addIteration(iterationData)), 
         addDay: dayData => dispatch(addDay(dayData)),
         getDay: dayId => dispatch(getDay(dayId)),
+        addListContainerToDay: listData => dispatch(addListContainerToDay(listData)),
+        addListToContainer: listData => dispatch(addListToContainer(listData)),
+        updateMyFrameListTitle: listData => dispatch(updateMyFrameListTitle(listData)),
+        addTextfieldToDay:textfieldData => dispatch(addTextfieldToDay(textfieldData)),
+        addTextfieldToContainer: textfieldData => dispatch(addTextfieldToContainer(textfieldData)),
+        updateTextfield: textfieldData => dispatch(updateTextfield(textfieldData))
     }
 }
 

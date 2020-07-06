@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from "react";
-import "./AddContentElementMenu.css";
+import "./AddMenu.css";
 import Tooltip from "react-tooltip";
 import Backdrop from "../../UI/Backdrop/Backdrop"
 
@@ -19,24 +19,22 @@ const addContentElementMenu = props => {
 
     const menuItems = menuOpen ? (
         <Fragment>
-            <div className = "AddContentItemsContainer">
-                <div className ="AddMyFrameItem" onClick = {() => addListHandler()}>
+            <div className = "AddItemsContainer">
+                <div className ="AddItem" onClick = {() => addListHandler()}>
                     Add Lists
                 </div>  
-                <div className ="AddMyFrameItem" onClick = {() => addTextfieldHandler()}>
+                <div className ="AddItem" onClick = {() => addTextfieldHandler()}>
                     Add textField
                 </div>          
             </div> 
-            <Backdrop cssClassName ="ListCloseBackdrop" clicked = {() => setMenuOpen(false)}/>
+            <Backdrop cssClassName ="AddItemsListCloseBackdrop" clicked = {() => setMenuOpen(false)}/>
         </Fragment>
     ) : null;
     return (
-        <div className = "AddContentElementMenuContainer">
-            <div></div>
-            <div className = "AddContentElementMenuContainerPoitioner">
-                <img src = {require("../../../images/add.svg")} className = "AddMyFrameItemSVG" alt = "" data-tip = "Add new content" onClick = {() => setMenuOpen(true)}/>
+        <div className = "AddMenuContainer">
+            <div className = "AddMenuContainerPositioner">
+                <img src = {require("../../../images/add.svg")} className = "AddItemSVG" alt = "" data-tip = {props.tootltipText} onClick = {() => setMenuOpen(true)}/>
                 <Tooltip/>
-                
                 {menuItems}
  
             </div>

@@ -11,6 +11,10 @@
     cursor: url("../../images/editSmall.svg") 0 16, auto;
 }
 
+#EditableDiv:hover{
+    cursor: url("../../images/editSmall.svg") 0 16, auto;
+}
+
 .InputTag{
     width:100%;
     background-color: rgba(var(--gtd-orange),0.1);

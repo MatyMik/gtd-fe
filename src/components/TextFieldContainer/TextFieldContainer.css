@@ -1,0 +1,22 @@
+.TextFieldContainer{
+    color: rgb(var(--gtd-black));
+    background-color: rgba(var(--gtd-orange),0.5);
+    /*border: 1px solid rgba(var(--gtd-black),1);    */
+    border-radius: 1rem;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 12fr 1fr;
+    justify-content: center;
+}
+
+.TextFieldsContainer{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(auto-fill, minmax(min-content, max-content));
+}
+
+.AddTextFieldSVG{
+    height: 1.5rem;
+    fill:red;
+    margin:auto;
+}

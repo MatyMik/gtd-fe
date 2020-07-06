@@ -1,3 +1,16 @@
 .MyFrameListsContainer{
+    color: white;
+    background-color: rgba(var(--gtd-black),1);
+    min-height: 6rem;
+    height: max-content;
+    display: grid;
+    grid-template-columns: 12fr 1fr;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
 
+.MyFrameLists{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(auto-fill, minmax(min-content, max-content));
 }

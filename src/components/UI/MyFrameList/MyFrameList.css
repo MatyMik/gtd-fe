@@ -1,8 +1,35 @@
+.MyFrameListContainer{
+    margin: 1rem 0;
+}
 
+.MyFrameListTitleContainer{
+    margin:auto;
+    width:80%;
+    text-align:center;
+    border-bottom: 1px solid rgba(var(--gtd-orange),0.8)
+}
 
 .MyFrameListHeader{
+    
+}
+
+.MyFrameListTitleInput{
     margin:auto;
     width:80%;
     background-color: rgba(var(--gtd-orange),0.5);
     text-align:center;
+    border: none;
+    outline: none;
+    height: 1.125rem;
+    font-size: 1rem;
+    padding:0px;
+}
+
+.AddNewTaskToList{
+    opacity: 0.2;
+}
+
+.AddNewTaskToList:hover,
+.AddNewTaskToList:active{
+    opacity: 1;
 }

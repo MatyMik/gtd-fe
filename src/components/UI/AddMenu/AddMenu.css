@@ -1,14 +1,14 @@
-.AddContentElementMenuContainer{
+.AddMenuContainer{
     display: grid;
     grid-template-columns: 8fr 1fr;
     margin-top: 1rem;
 }
 
-.AddMyFrameItemSVG{
+.AddItemSVG{
     height: 1.5rem;
 }
 
-.AddMyFrameItem{
+.AddItem{
     color:rgba(var(--gtd-black),1);
     font-weight: bold;
     text-align: left;
@@ -19,7 +19,7 @@
     align-content: center;
 }
 
-.AddMyFrameItem:hover{
+.AddItem:hover{
     color:rgba(var(--gtd-orange),1);
     cursor: pointer;
 }
@@ -28,7 +28,7 @@
     position: relative;
 }
 
-.AddContentItemsContainer{
+.AddItemsContainer{
     position: absolute; 
     width:100%;   
     border-radius: 5px;
@@ -36,8 +36,17 @@
     z-index: 10;
 }
 
+.AddItemsListCloseBackdrop{
+    position:fixed;
+    top:0%;
+    right:0%;
+    height: 100vh;
+    width:100vw;
+    z-index:2;
+}
+
 @media(max-width:1400px){
-    .AddContentItemsContainer{
+    .AddItemsContainer{
         position: absolute;  
         width:120%;  
         border-radius: 5px;
@@ -47,7 +56,7 @@
 }
 
 @media(max-width:1100px){
-    .AddContentItemsContainer{
+    .AddItemsContainer{
         position: absolute;  
         width:130%;  
         border-radius: 5px;
@@ -57,7 +66,7 @@
 }
 
 @media(max-width:1000px){
-    .AddContentItemsContainer{
+    .AddItemsContainer{
         position: absolute;  
         width:130%;  
         border-radius: 5px;
@@ -67,7 +76,7 @@
 }
 
 @media(max-width:930px){
-    .AddContentItemsContainer{
+    .AddItemsContainer{
         position: absolute;  
         width:140%;  
         border-radius: 5px;
@@ -77,7 +86,7 @@
 }
 
 @media(max-width:860px){
-    .AddContentItemsContainer{
+    .AddItemsContainer{
         position: absolute;  
         width:160%;  
         border-radius: 5px;

@@ -1,0 +1,20 @@
+.AddSingleListSVG{
+    height: 1.5rem;
+    color:white;
+}
+
+.AddSingleListMenuContainerPositioned{
+    position:relative;
+}
+
+.AddSingleListMenuDropDownContainer{
+    position:absolute;
+    width:100%;
+    top:1.6rem;
+    right:0;
+    border: 1px solid rgba(var(--gtd-orange),1);
+    z-index: 100;
+}
+.AddSingleListMenuContainer{
+    
+}

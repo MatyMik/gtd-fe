@@ -4,7 +4,7 @@ import Linkify from "react-linkify"
 const outputDiv = props => {
     const text = props.linkify ? <Linkify options = {props.options}>{props.text}</Linkify> : props.text
     return (
-        <div className={props.outputCssClass || "Output"} onClick={props.divClicked}>
+        <div className={props.outputCssClass || "Output"} onClick={props.divClicked} id = {props.id}>
             {text}
         </div>
     )

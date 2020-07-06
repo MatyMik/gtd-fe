@@ -1,13 +1,16 @@
-import React from "react";
+import React, {useRef} from "react";
+import autosize from 'autosize';
 
 const InputTag = props => {
-    return <input 
+    const textAreaRef = useRef(null)
+    //autosize(textAreaRef.current)
+    return <textarea   
+    autoFocus
     className={props.inputCssClass || "InputTag"}
-    type = "text" 
     value={props.value} 
+    //ref = {textAreaRef}
     onBlur = {props.inputTagLeft} 
-    autoFocus 
-    onChange = {event =>props.changed(event)}/>
+    onChange = {event =>props.changed(event)}></textarea>
 }
 
 export default InputTag;
