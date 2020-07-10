@@ -54,7 +54,7 @@
 .AddMenu{
     position:absolute;
     display: grid;
-    width:120%;
+    width:150%;
     grid-template-columns: 4fr 2fr 0.5fr;
     top:-1.3rem;
     right:-5rem;
@@ -63,6 +63,22 @@
     border-radius: 5px;
     overflow: hidden;
     height: 1.5rem;
+}
+
+.AddMenuOptions{
+    position:absolute;
+    display: grid;
+    width:150%;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
+    top:-1.3rem;
+    right:-5rem;
+    background-color: white;
+    border: 1px solid rgba(var(--gtd-orange),1);
+    border-radius: 5px;
+    overflow: hidden;
+    min-height: 1.5rem;
+    background-color: white;
+    z-index: 2;
 }
 
 .AddItemButton{

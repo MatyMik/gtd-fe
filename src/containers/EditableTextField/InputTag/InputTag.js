@@ -1,8 +1,7 @@
-import React, {useRef} from "react";
-import autosize from 'autosize';
+import React from "react";
+
 
 const InputTag = props => {
-    const textAreaRef = useRef(null)
     //autosize(textAreaRef.current)
     return <textarea   
     autoFocus

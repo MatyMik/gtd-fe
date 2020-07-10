@@ -4,3 +4,14 @@
     width:90%;
     margin:auto
 }
+
+.TitleContainer{
+    display: grid;
+    grid-template-columns:1fr  8fr 1fr;
+}
+.Title{
+    margin: 1rem auto 1rem auto;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(var(--gtd-orange))
+}

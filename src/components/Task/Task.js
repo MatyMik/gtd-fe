@@ -12,20 +12,18 @@ const Task = props => {
         className: "Linkify"
     }
 
-    const [done, setDone] = useState(false)
+    const [done, setDone] = useState(props.archived)
     const [taskName, setTaskName] = useState(props.taskName || '');
     const [description, setDescription] = useState(props.description || "");
     const [link, setLink] = useState(props.link || "");
-    const [doWith, setDoWith] = useState(props.with || "");
+    const [doWith, setDoWith] = useState(props.doWith || "");
     const [asignee, setAsignee] = useState(props.asignee || "");
     const [deadline, setDeadline] = useState(props.deadline || "");
     const [archived, setArchived] = useState(props.archived || false)
     const [doneTooltipOpen, setDoneTooltipOpen] = useState(false)
 
     useEffect(()=> {  
-        if(archived){
-            updateTask()
-        }
+        updateTask()
     },[archived])
 
     const updateTask = () => {
@@ -40,12 +38,16 @@ const Task = props => {
             userId,
             topicId
         }
+        console.log(archived)
         props.updateTask(taskData)
     }
 
-    const archiveTask = () => {
-        setArchived(true)
+    const archiveTaskToggle = () => {
+        setArchived(!archived)
+        //updateTask()
     }
+
+    
 
     const taskNameUpdated = event => {
         setTaskName(event.target.value)
@@ -81,6 +83,7 @@ const Task = props => {
         setDone(!done)
         setDoneTooltipOpen(true)
     }
+
     const closeDoneTooltip = () => {
         setDoneTooltipOpen(false)
     }
@@ -88,15 +91,13 @@ const Task = props => {
     const afterDoneTooltip = done && doneTooltipOpen ? (
         <div className = "DoneTooltip">
             
-            <div className="TaskArchive TaskItem" onClick = {() => archiveTask()}>
-                Archive
+            <div className="TaskArchive TaskItem" onClick = {() => archiveTaskToggle()}>
+                {archived ? "Unarchive": "Archive"}
             </div>
             <img className="DeleteTask" alt = "" src = {require("../../images/trash.svg")} onClick ={props.deleteTask}/>
             <div onClick = {() => closeDoneTooltip()}>x</div>
         </div>
         ) :null;
-
-
 
     const taskElement = <Fragment>
     <EditableTextField 
@@ -159,7 +160,7 @@ const Task = props => {
         > {asignee} </div>
         <div className = "TaskDeadline ArchivedTaskItem"
         > {deadline} </div>
-        <img className="DeleteTask" alt = "" src = {require("../../images/trash.svg")} onClick ={props.deleteTask}/>
+        <img className="DeleteTask" alt = "" src = {require("../../images/open-menu.svg")} onClick ={() => setDoneTooltipOpen(true)}/>
         </Fragment>
     let cssClass = "Task"
     if(props.archiveFilter && archived){

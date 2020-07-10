@@ -38,7 +38,7 @@ const MyFrame = props => {
     const [nextDayToCreateStart, setNextDayToCreateStart] = useState(-1);
     const [dayId, setDayId] = useState(localStorage.getItem("dayId"));
     const [firstLoad, setFirstLoad] = useState(false)
-    const [listsToAdd, setListsToAdd] = useState(suggestionLists, suggestionLists.listsToAdd)
+    const [listsToAdd] = useState(suggestionLists, suggestionLists.listsToAdd)
     //const [currentContentLength, setCurrentContentLength] = useState(day && day.content.length)
     // dayId is
     // const dayIndex = iteration && iteration.dayList && iteration.daylist.length
@@ -49,9 +49,6 @@ const MyFrame = props => {
     
 
     // get iteration list
-    const showAddEvenetListeners = (event) => {
-        console.log(event.target.children)
-    }
 
     useEffect(()=>{
         if((localStorage.getItem("iterationId")!== iterationId && iterationId && !props.loading) ||
@@ -122,24 +119,15 @@ const MyFrame = props => {
         setDayId(dayId); 
     }
 
-    /*const updateDayContents = newItem => {
-        const currentDayContents = [...contents];
-        currentDayContents.push(newItem);
-        setDayContentItems(currentDayContents);
-        //send to backend
 
-    }*/
     const addListHandler = () =>{
-        //what it needs=
-        // add an element to the day elements
+
         const listData = {
             userId,
             dayId,
             orderInContents:contents.length
         }
-        //updateDayContents(listData)
         props.addListContainerToDay(listData)
-        // send to BE to update day lists there
     }
 
     const addTextfieldHandler = (event,id) => {

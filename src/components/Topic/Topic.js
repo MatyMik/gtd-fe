@@ -24,13 +24,21 @@ const Topic = props => {
             taskName:"New Task"}
         props.addNewTask(taskData)
     }
+    const updateTopic = (event) => {
+        const topicData = {
+            title: event.target.value, 
+            topicId, 
+            userId
+        }
+        props.updateTopic(topicData)
+    }
     
     return (
         <div className ="Topic">
             <div className = "TopicTitleContainer">
-            <EditableTextField 
+            <EditableTextField   
                 className ="" 
-                inputTagLeft = {() => props.updateTopic}
+                inputTagLeft = {(event) => updateTopic(event)}
                 divClicked = {props.divClicked}
                 outputCssClass = "TopicTitle"
                 inputCssClass = "TopicTitleInput"

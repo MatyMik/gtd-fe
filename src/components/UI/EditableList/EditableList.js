@@ -15,7 +15,7 @@ const ListToSelectFrom = props => {
             <ListItem name = "Balázs" email= "(baliamg@gmail.com)"/>
             {shareInputOpen ? (
             <div className="ShareWithContainer">
-                <input type = "email" onChange = {event => setEmailToShare(event.target.value)}/> 
+                <input type = "email" onChange = {event => setEmailToShare(event.target.value)} value = {emailToShare}/> 
                 <div> Share</div>
                 <div onClick={() => setShareInputOpen(false)}>x</div>
             </div>

@@ -6,25 +6,25 @@ import InputTag from "./InputTag/InputTag";
 const EditableTextField = props => {
     const [textValue, setTextValue] = useState(props.textValue);
     const [editMode, setEditMode] = useState(props.editMode || false);
-    const [lastTextValue, setLastTextValue] = useState("")
+    //const [lastTextValue, setLastTextValue] = useState("")
 
-    const {listId, textfieldId, field} = props;
+    //const {listId, textfieldId, field} = props;
+    //if last input 500 seconds ago was the same, send update
 
-
-        //if last input 500 seconds ago was the same, send update
-    const userChangedInupt = setTimeout(() => {
-        if(lastTextValue!==textValue){
-            
+    /*const userChangedInupt = setTimeout(() => {
+        if(lastTextValue!==textValue){ 
             setLastTextValue(textValue)
         } else {
             console.log( lastTextValue, textValue)
             clearInterval(userChangedInupt)
         }
-    }, 500)
+    }, 500)*/
 
     const inputTagLeft = event=>{
         const newTextValue = event.target.value 
         setTextValue(newTextValue)
+        props.inputTagLeft(event, props.field)
+        
     }
 
     const divClicked = ()=>{
@@ -36,7 +36,7 @@ const EditableTextField = props => {
     const elementToRender = editMode ? 
     (
         <InputTag 
-            inputTagLeft = {(event) => inputTagLeft(event)} 
+            inputTagLeft = {(event) => setEditMode(false)} 
             value = {textValue} 
             changed={event => inputTagLeft(event) }
             inputCssClass = {props.inputCssClass}

@@ -79,13 +79,13 @@ const projectDetails = props => {
         }
         const timeTransformed = hours+":"+minutes;
         return <NextAction 
-        id = {nA._id}
-        title = {nA.title} 
-        key = {index} 
-        dueDate = {dateTransformed} 
-        time = {timeTransformed}
-        projectId = {nA.projectId}
-        deleteNA = {(nextActionId,userId, projectId) =>props.deleteNextAction(nextActionId,userId, projectId)}
+            id = {nA._id}
+            title = {nA.title} 
+            key = {index} 
+            dueDate = {dateTransformed} 
+            time = {timeTransformed}
+            projectId = {nA.projectId}
+            deleteNA = {(nextActionId,userId, projectId) =>props.deleteNextAction(nextActionId,userId, projectId)}
         />
     })
     const addItemHandler = () => {

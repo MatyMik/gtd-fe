@@ -13,16 +13,20 @@
     
 }
 
-.MyFrameListTitleInput{
+.MyFrameListTitleInput:focus{
     margin:auto;
     width:80%;
-    background-color: rgba(var(--gtd-orange),0.5);
     text-align:center;
+    background: none;
     border: none;
     outline: none;
     height: 1.125rem;
+    color: white;
+    font-family: inherit;
     font-size: 1rem;
     padding:0px;
+    resize:none;
+    vertical-align: bottom;
 }
 
 .AddNewTaskToList{

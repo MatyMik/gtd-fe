@@ -10,7 +10,7 @@ export const ListElement = props => {
                 {numberToRender}
             </div>
             <EditableTextField textValue = {props.title} outputCssClass="MyFrameTaskName"/>
-                
+            <div><input type = "checkbox"/></div>
             
         </div>
     )

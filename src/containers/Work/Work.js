@@ -23,8 +23,7 @@ const Work = props => {
         props.addTask(taskData)
     }
 
-    const updateTopicTitle = (topicId, title) => {
-        const topicData = {topicId, title, userId: props.userId}
+    const updateTopicTitle = (topicData) => {
         props.updateTopic(topicData)
     }
     const updateTask = taskId => {
@@ -47,7 +46,6 @@ const Work = props => {
     const archiveFilterHandler = () => {
         setArchiveFilter(!archiveFilter)
     }
-    console.log(props.topics)
     return ( 
         <div className = "Work">
             <TopMenu 

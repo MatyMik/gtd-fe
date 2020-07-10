@@ -17,6 +17,8 @@ const editNextAction = props => {
     const params = useParams();
     const {projectId} = params;
     const history = useHistory();
+    const previousPage = sessionStorage.getItem("pageBeforeAddNextAction")
+    const redirectPage = previousPage || "/private"
     useEffect(()=> {
         // If edit, load the data
     },[])
@@ -43,7 +45,7 @@ const editNextAction = props => {
             userId:props.userId
         }
         props.addNextAction(nextActionData)
-        const redirectPage = sessionStorage.getItem("pageBeforeAddNextAction") || "/private"
+        
         //set nextActions to zero
         props.setNextActionsToNull();
         history.push(redirectPage)
@@ -51,8 +53,10 @@ const editNextAction = props => {
 
     return (
         <div>
-            <div className = "Title">
-                Next Action
+            <div className = "TitleContainer">
+                <span></span>
+                <span className = "Title">Next Action</span>
+                <span className = "Title" onClick = {() => history.push(redirectPage)}>Back</span>
             </div>
              
             <Input cssClass = 'InputContainer'
